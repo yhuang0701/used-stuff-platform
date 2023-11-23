@@ -8,5 +8,8 @@ app.get('/', (req, res) => {
   res.status(200).json({ message: "Welcome to the Used Stuff Platform" })
 })
 
+// Routes
+app.use('/users', require('./routes/userRoutes'));
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
