@@ -1,0 +1,114 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.header-button {
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #007bff;
+    border-radius: 20px;
+    margin: 0 5px;
+}
+
+.header-button:hover {
+    background-color: #e7e7e7;
+}
+
+.search-form {
+    margin-left: 50px; /* Adjust as necessary */
+    display: flex;
+    align-items: center;
+}
+
+.search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-icon {
+    position: absolute;
+    right: 20px; /* Adjust as needed */
+    color: #ccc;
+}
+
+
+.search-input {
+    padding: 8px 12px;
+    padding-right: 30px;
+    border-radius: 40px;
+    border: 1px solid #ccc;
+    margin-right: 8px;
+    width: 100%;
+}
+
+.search-and-filter {
+    display: flex;
+    align-items: center;
+}
+
+.search-form {
+    margin-right: 10px; /* Space between search form and filter icon */
+}
+
+.filter-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid blue;
+}
+
+.filter-icon:hover {
+    background-color: #e7e7e7;
+}
+
+
+
+
+.left-header-section, .right-header-section {
+    display: flex;
+    align-items: center;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 15px; /* Adds some space between 'Post item' and 'user-info' */
+}
+
+
+.notifications-icon {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    padding: 2px 6px;
+    position: relative;
+    top: -10px;
+    right: -10px;
+}
+
+.filter-options {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+    top: 100%; /* Position below the filter icon */
+    right: 0;
+    z-index: 100; /* To ensure it's above other content */
+    /* Add more styling as needed */
+}
+
+
+.faBell, .faUser {
+    margin-right: 5px;
+}
