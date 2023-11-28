@@ -3,24 +3,26 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #f8f9fa;
+    background-color: #13294b; /* UIUC Navy Blue */
+    color: white; /* Text color for better contrast */
     border-bottom: 1px solid #e7e7e7;
 }
 
 .header-button {
     padding: 8px 15px;
     text-decoration: none;
-    color: #007bff;
+    color: #ff552e; /* UIUC Orange */
     border-radius: 20px;
     margin: 0 5px;
 }
 
 .header-button:hover {
-    background-color: #e7e7e7;
+    background-color: #ff552e; /* UIUC Orange */
+    color: white; /* Text color when hovered */
 }
 
 .search-form {
-    margin-left: 50px; /* Adjust as necessary */
+    margin-left: 50px;
     display: flex;
     align-items: center;
 }
@@ -33,10 +35,9 @@
 
 .search-icon {
     position: absolute;
-    right: 20px; /* Adjust as needed */
+    right: 20px;
     color: #ccc;
 }
-
 
 .search-input {
     padding: 8px 12px;
@@ -53,7 +54,7 @@
 }
 
 .search-form {
-    margin-right: 10px; /* Space between search form and filter icon */
+    margin-right: 10px;
 }
 
 .filter-icon {
@@ -63,15 +64,12 @@
     padding: 8px;
     border-radius: 20px;
     background-color: #f8f9fa;
-    border: 1px solid blue;
+    border: 1px solid #13294b; /* UIUC Navy Blue */
 }
 
 .filter-icon:hover {
     background-color: #e7e7e7;
 }
-
-
-
 
 .left-header-section, .right-header-section {
     display: flex;
@@ -81,12 +79,11 @@
 .user-info {
     display: flex;
     align-items: center;
-    margin-left: 15px; /* Adds some space between 'Post item' and 'user-info' */
+    margin-left: 15px;
 }
 
-
 .notifications-icon {
-    background-color: red;
+    background-color: #ff552e; /* UIUC Orange */
     color: white;
     border-radius: 50%;
     font-size: 12px;
@@ -102,12 +99,10 @@
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 4px;
-    top: 100%; /* Position below the filter icon */
+    top: 100%;
     right: 0;
-    z-index: 100; /* To ensure it's above other content */
-    /* Add more styling as needed */
+    z-index: 100;
 }
-
 
 .faBell, .faUser {
     margin-right: 5px;
