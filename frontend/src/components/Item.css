@@ -1,0 +1,48 @@
+.item {
+    border: 1px solid #000; /* Black border */
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #fff; /* White background */
+}
+
+.item-image img {
+    width: 100%;
+    display: block; /* Remove any space below the image */
+    height: auto;
+    background-color: #ccc; /* Placeholder color for the image */
+}
+
+.item-details {
+    padding: 10px;
+    text-align: center; /* Center the text */
+    border-top: 1px solid #000; /* Black border for separation */
+}
+
+.price {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.item-name {
+    margin: 5px 0;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+.user-icon {
+    /* Replace with actual icon styles or use an <img> tag */
+}
+
+.username {
+    font-weight: bold;
+}
+
+.views {
+    font-size: 0.8em;
+    color: #666; /* Grey color for views */
+}
