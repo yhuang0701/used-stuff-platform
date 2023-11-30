@@ -74,6 +74,7 @@
 .left-header-section, .right-header-section {
     display: flex;
     align-items: center;
+    padding: 0 5%;
 }
 
 .user-info {
@@ -106,4 +107,42 @@
 
 .faBell, .faUser {
     margin-right: 5px;
+}
+
+.right-header-section {
+    position: relative; /* Ensure the dropdown is positioned relative to this */
+    /* Additional styles if needed */
+}
+
+.user-profile-dropdown {
+    position: relative; /* For absolute positioning of the dropdown */
+    display: inline-block; /* Needed for proper spacing */
+    /* Additional styles if needed */
+}
+
+.user-profile-dropdown .dropdown-content {
+    display: none; /* Hide the dropdown content by default */
+    position: absolute; /* Position the dropdown content absolutely within user-profile-dropdown */
+    background-color: #E84A27; /* Background color for the dropdown - UIUC often uses white backgrounds */
+    min-width: 100px; /* Minimum width of the dropdown */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for the dropdown */
+    z-index: 1; /* Ensure the dropdown is above other content */
+    border: 1px solid #c0c0c0; /* Optional: border to define the dropdown */
+}
+
+.user-profile-dropdown:hover .dropdown-content {
+    display: block; /* Show the dropdown content on hover */
+}
+
+.user-profile-dropdown .dropdown-content a {
+    color: white; /* UIUC Blue for text */
+    padding: 12px 16px; /* Padding for the dropdown links */
+    text-decoration: none; /* No underline for links */
+    display: block; /* Dropdown links should take up the full width */
+    text-align: left; /* Align text to the left */
+}
+
+.user-profile-dropdown .dropdown-content a:hover {
+    background-color: #E84A27; /* UIUC Orange for background on hover */
+    color: #fff; /* White text on hover */
 }

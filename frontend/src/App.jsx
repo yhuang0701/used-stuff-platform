@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import React from 'react';
 import Header from './components/Header';
 import Post from './View/PostView'
-import ItemDetail from './View/ItemDetail'
+import UserDetail from './View/UserDetail'
 
 
 const App = () => {
@@ -14,7 +14,7 @@ const App = () => {
 
                 <Routes>
                     <Route path="/post" element={<Post />} />
-                    <Route path="/Detail" element={<ItemDetail />} />
+                    <Route path="/UserDetail" element={<UserDetail />} />
 
                     {/* Add additional routes for other pages */}
                 </Routes>

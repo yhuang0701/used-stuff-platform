@@ -1,41 +1,51 @@
 .item {
-    border: 1px solid #000; /* Black border */
+    border: 1px solid #1460AA; /* UIUC Blue border */
     border-radius: 4px;
     overflow: hidden;
-    background-color: #fff; /* White background */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* smooth transition for hover */
+}
+
+.item:hover {
+    transform: translateY(-5px); /* slight lift on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* deeper shadow on hover */
 }
 
 .item-image img {
     width: 100%;
-    display: block; /* Remove any space below the image */
+    display: block;
     height: auto;
-    background-color: #ccc; /* Placeholder color for the image */
+    background-color: #ccc;
 }
 
 .item-details {
     padding: 10px;
-    text-align: center; /* Center the text */
-    border-top: 1px solid #000; /* Black border for separation */
+    text-align: center;
+    border-top: 1px solid #1460AA; /* UIUC Blue border */
+    font-family: 'Arial', sans-serif; /* Modern sans-serif font */
 }
 
 .price {
     margin: 5px 0;
     font-weight: bold;
+    color: #E84A27; /* UIUC Orange for prices */
 }
 
 .item-name {
     margin: 5px 0;
+    color: #1460AA; /* UIUC Blue for item names */
 }
 
 .user-info {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Space between icon and text */
+    gap: 10px;
 }
 
 .user-icon {
-    /* Replace with actual icon styles or use an <img> tag */
+    /* Icon styles or <img> tag */
 }
 
 .username {
@@ -44,5 +54,5 @@
 
 .views {
     font-size: 0.8em;
-    color: #666; /* Grey color for views */
+    color: #666;
 }
