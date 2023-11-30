@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Item from '../components/Item';
 import './UserDetail.css';
 import userimg from '../assets/panda.jpeg';
@@ -15,28 +15,49 @@ const UserDetail = () => {
             itemName: 'React Framework',
             price: '$20',
             userName: 'Developer',
-            views: '1000 views'
+            Postdate: '11.30.2023',
+            Sold:true,
+            like:false
         },
         {
             imageSrc:ReactLogo,
             itemName: 'React Framework',
             price: '$20',
             userName: 'Developer',
-            views: '1000 views'
+            Postdate: '11.30.2023',
+            Sold:false,
+            like:false
         },
         {
             imageSrc:ReactLogo,
             itemName: 'React Framework',
             price: '$20',
             userName: 'Developer',
-            views: '1000 views'
+            Postdate: '11.30.2023',
+            Sold:true,
+            like:true
         }
     ];
 
-    // Function to render items
+    const [likedItems, setLikedItems] = useState(
+        itemsData.reduce((acc, item, index) => ({ ...acc, [index]: item.like }), {})
+    );
+
+    const toggleLike = (itemId) => {
+        setLikedItems(prevLikedItems => ({
+            ...prevLikedItems,
+            [itemId]: !prevLikedItems[itemId]
+        }));
+    };
+
     const renderItems = () => {
         return itemsData.map((item, index) => (
-            <Item key={index} {...item} />
+            <Item
+                key={index}
+                {...item}
+                liked={likedItems[index]}
+                toggleLike={() => toggleLike(index)} // Pass the toggle function specific to the item
+            />
         ));
     };
 
