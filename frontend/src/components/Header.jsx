@@ -79,9 +79,15 @@ const Header = () => {
                         <FontAwesomeIcon icon={faBell} />
                         <span className="notifications-icon">1</span>
                     </Link>
-                    <Link to="/profile" className="header-button">
-                        <FontAwesomeIcon icon={faUser} /> {/* User profile icon */}
-                    </Link>
+                    <div className="user-profile-dropdown">
+                        <Link to="/UserDetail" className="header-button">
+                            <FontAwesomeIcon icon={faUser} /> {/* User profile icon */}
+                        </Link>
+                        <div className="dropdown-content">
+                            <Link to="/signin">Sign In</Link>
+                            <Link to="/signout">Sign Out</Link>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
