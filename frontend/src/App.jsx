@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import React from 'react';
 import Header from './components/Header';
 import Post from './View/PostView'
+import SignIn from './View/SigninView';
 import UserDetail from './View/UserDetail'
 import UserDashboard from './View/UserDashboard';
 import Search from './View/Search';
@@ -17,7 +18,9 @@ const App = () => {
                     <Route path="/post" element={<Post />} />
                     <Route path="/UserDetail" element={<UserDetail />} />
                     <Route path="/profile" element={<UserDashboard />} />
-                    <Route path="/search" element={<Search />} />
+                    <Route path="/search" element={<Search />} />                    
+                    <Route path='/user/signin' element={<SignIn />} />
+
                     {/* Add additional routes for other pages */}
                 </Routes>
             </main>
