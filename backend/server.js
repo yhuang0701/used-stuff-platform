@@ -7,6 +7,7 @@ const connectDB = require('./config/db');
 connectDB();
 
 const app = express();
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: "Welcome to the Used Stuff Platform" })
