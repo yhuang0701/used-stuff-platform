@@ -80,7 +80,7 @@ const Header = () => {
                         <span className="notifications-icon">1</span>
                     </Link>
                     <div className="user-profile-dropdown">
-                        <Link to="/UserDetail" className="header-button">
+                        <Link to="/profile" className="header-button">
                             <FontAwesomeIcon icon={faUser} /> {/* User profile icon */}
                         </Link>
                         <div className="dropdown-content">
