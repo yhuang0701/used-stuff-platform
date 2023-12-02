@@ -4,6 +4,7 @@ import React from 'react';
 import Header from './components/Header';
 import Post from './View/PostView'
 import UserDetail from './View/UserDetail'
+import UserDashboard from './View/UserDashboard';
 
 
 const App = () => {
@@ -15,7 +16,7 @@ const App = () => {
                 <Routes>
                     <Route path="/post" element={<Post />} />
                     <Route path="/UserDetail" element={<UserDetail />} />
-
+                    <Route path="/profile" element={<UserDashboard />} />
                     {/* Add additional routes for other pages */}
                 </Routes>
             </main>
