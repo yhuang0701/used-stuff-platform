@@ -13,7 +13,6 @@ const App = () => {
         <>
             <Header />
             <main>
-
                 <Routes>
                     <Route path="/post" element={<Post />} />
                     <Route path="/UserDetail" element={<UserDetail />} />
