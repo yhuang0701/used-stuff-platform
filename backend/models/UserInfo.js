@@ -1,13 +1,15 @@
 // Assuming auth.js is in the same directory
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('./Auth.js'); // Import User model
-const Item = require('./UserInfo.js')
 
-const UerInfoSchema = new Schema({
-    userID: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+const UserInfoSchema = new Schema({
+    userName: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
         required: true
     },
     rating: {
@@ -21,14 +23,16 @@ const UerInfoSchema = new Schema({
     },
     contact: {
         type: String,
-        required: true
+        required: false
     },
     items: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Item'
-    }]
+        type: String // Assuming images are stored as URLs or paths
+    }],
+    favorite: [{
+        type: String // Assuming images are stored as URLs or paths
+    }],
 });
 
-const UserInfo = mongoose.model('ItemInfo', UerInfoSchema);
+const UserInfo = mongoose.model('UserInfo', UserInfoSchema);
 
 module.exports = UserInfo;
