@@ -74,6 +74,10 @@ module.exports = function (router) {
             if ('userID' in req.body) {
                 return res.status(500).send({ message: 'Item cannot be assigned to other user', data: [] });
             }
+
+            if ('images' in req.body && req.body.images){
+                new_Item.images = req.body.images;
+            }
     
             const updatedData = await Item.findByIdAndUpdate(item.id, new_Item, { new: true });
     
