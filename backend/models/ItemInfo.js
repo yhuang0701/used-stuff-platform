@@ -11,10 +11,10 @@ const itemInfoSchema = new Schema({
         type: String,
         required: true
     },
-    label: {
+    label: [{
         type: String,
         required: true
-    },
+    }],
     description: {
         type: String,
         required: true
@@ -28,7 +28,7 @@ const itemInfoSchema = new Schema({
     },
     sold: {
         type: Boolean,
-        required: false
+        default:false
     }
 });
 

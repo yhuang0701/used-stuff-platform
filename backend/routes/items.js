@@ -1,6 +1,29 @@
 var User = require('../models/UserInfo.js');
 var Item = require('../models/ItemInfo.js');
 
+const fs = require('fs');
+const path = require('path');
+
+const uploadsDir = path.join('.', 'uploads');
+
+// This checks if the directory exists, and if it doesn't, it creates it.
+if (!fs.existsSync(uploadsDir)){
+    fs.mkdirSync(uploadsDir, { recursive: true });
+}
+
+
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, uploadsDir) // Use the uploadsDir variable
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+    }
+});
+
+const upload = multer({ storage: storage });
+
 module.exports = function (router) {
     var itemsRoute = router.route('/items');
     itemsRoute.get(async (req, res) => {
@@ -43,7 +66,7 @@ module.exports = function (router) {
 
     // Create a New Item:
     // Endpoint: POST http://localhost:5173/api/items
-    itemsRoute.post(async (req, res) => {
+    itemsRoute.post(upload.array('images'), async (req, res) => {
         try {
               const new_item = new Item();
               if ('userID' in req.body && req.body.userID && req.body.userID.length > 0) {
@@ -69,11 +92,14 @@ module.exports = function (router) {
                 return res.status(500).send({message: 'Name Missing',data: []});
             }
 
-            if ('label' in req.body && req.body.label) {
+            if ('label' in req.body & req.body.label.length > 0) {
+                console.log('req.body.labels:', req.body.label);
+
                 new_item.label = req.body.label;
             } else {
-                return res.status(500).send({ message: 'Label missing', data: [] });
+                return res.status(400).send({ message: 'Labels missing or not in the correct format', data: [] });
             }
+
 
             if ('description' in req.body && req.body.description){
                 new_item.description = req.body.description;
@@ -93,15 +119,17 @@ module.exports = function (router) {
                 new_item.postDate = Date.now();
             }
 
-            if ('images' in req.body && req.body.images){
-              new_item.images = req.body.images;
+
+            if (req.files) {
+                new_item.images = req.files.map(file => file.path); // Store the paths of the uploaded files
             }
+
 
 
             await new_item.save();
             return res.status(201).send({ message: 'item Created', data: new_item });
         } catch (error) {
-          return res.status(500).send({ message: 'Server error', data: error });
+          return res.status(500).send({ message: 'Server error', data: error.message });
         }
     });
 

@@ -28,7 +28,7 @@ const CreatePostView = () => {
     const handleContentChange = (event) => setContent(event.target.value);
 
     const handleTagInputKeyDown = (e) => {
-        if (e.key === 'Enter' && tagInput) {
+        if (e.key === ' ' && tagInput) {
             if (!tags.includes(tagInput)) { // Prevent adding duplicate tags
                 setTags([...tags, tagInput]);
                 setTagInput('');
@@ -79,37 +79,34 @@ const CreatePostView = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Function to convert image to Base64
-        const toBase64 = file => new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = error => reject(error);
+        // Create a FormData object
+        const formData = new FormData();
+
+
+        images.forEach(image => {
+            console.log(image)
+            formData.append('images', image);
         });
 
-        // Convert images to Base64 and add to images array
-        const base64Images = await Promise.all(images.map(async image => {
-            return await toBase64(image);
-        }));
+        tags.forEach(tag => {
+            console.log(tag)
+            formData.append('label', tag);
+        });
 
-        // Construct JSON object with form data
-        const jsonData = {
-            "userID": "656ffec0931a250a4c348812",
-            "name":"title",
-            "label":"test",
-            "description":"it is an test"
-            //images: base64Images
-        };
 
-        console.log(jsonData.title);
+        console.log(tags)
+
+        // Append other form fields to the FormData object
+        formData.append('userID', "656ffec0931a250a4c348812");
+        formData.append('name', title);
+        formData.append('description', content);
 
         try {
             const response = await fetch('http://localhost:5003/api/items', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(jsonData) // Convert the object to a JSON string
+                body: formData // Send the FormData object
+                // Note: When sending FormData, the 'Content-Type' header should not be set manually
+                // It will be set automatically by the browser, including the boundary parameter
             });
 
             if (!response.ok) {
@@ -123,7 +120,12 @@ const CreatePostView = () => {
             console.error('Submission error:', error);
             // Handle errors here
         }
+
+        //alert('Post complete!');
+        //window.location.href = '/';
+
     };
+
 
 
     return (

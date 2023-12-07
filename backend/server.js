@@ -3,6 +3,7 @@ const dotenv = require('dotenv').config();
 const PORT = process.env.PORT || 5000;
 const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
+const path = require('path');
 var router = express.Router();
 const cors = require('cors');
 
@@ -19,7 +20,10 @@ var allowCrossDomain = function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, PATCH, OPTIONS");
   next();
 };
-
+const jsonParser = bodyParser.json({ limit: '50mb' }); // Increase JSON payload size limit to 50mb
+const urlencodedParser = bodyParser.urlencoded({ limit: '50mb', extended: true }); // Increase URL-encoded payload size limit to 50mb
+app.use(jsonParser);
+app.use(urlencodedParser);
 
 app.use(allowCrossDomain);
 
@@ -28,6 +32,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
+
+
+app.use('/uploads', express.static(path.join('.', 'uploads')));
+
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: "Welcome to the Used Stuff Platform" })

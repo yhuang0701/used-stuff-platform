@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faUser, faBell, faSearch, faFilter} from '@fortawesome/free-solid-svg-icons';
+import {faUser, faBell, faSearch} from '@fortawesome/free-solid-svg-icons';
 import './Header.css'; // Make sure to create a CSS file for styling
 
 const Header = () => {
