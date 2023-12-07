@@ -75,8 +75,61 @@ const CreatePostView = () => {
         });
     };
 
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        // Function to convert image to Base64
+        const toBase64 = file => new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = error => reject(error);
+        });
+
+        // Convert images to Base64 and add to images array
+        const base64Images = await Promise.all(images.map(async image => {
+            return await toBase64(image);
+        }));
+
+        // Construct JSON object with form data
+        const jsonData = {
+            "userID": "656ffec0931a250a4c348812",
+            "name":"title",
+            "label":"test",
+            "description":"it is an test"
+            //images: base64Images
+        };
+
+        console.log(jsonData.title);
+
+        try {
+            const response = await fetch('http://localhost:5003/api/items', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(jsonData) // Convert the object to a JSON string
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const result = await response.json();
+            console.log('Success:', result);
+            // Handle success here
+        } catch (error) {
+            console.error('Submission error:', error);
+            // Handle errors here
+        }
+    };
+
+
     return (
         <div className="create-post-container">
+            <form onSubmit={handleSubmit}>
+
             <h1>Upload image:</h1>
             <div className="image-upload-section">
                 {renderImagePreviews()}
@@ -147,11 +200,7 @@ const CreatePostView = () => {
             <div className="submit-section">
                 <button type="submit" id="submit-button">Submit</button>
             </div>
-
-
-
-
-
+            </form>
         </div>
 
     );

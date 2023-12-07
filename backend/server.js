@@ -4,11 +4,13 @@ const PORT = process.env.PORT || 5000;
 const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 var router = express.Router();
+const cors = require('cors');
 
 // Connect to database
 connectDB();
 
 const app = express();
+app.use(cors());
 
 // Allow CORS so that backend and frontend could be put on different servers
 var allowCrossDomain = function (req, res, next) {
@@ -17,6 +19,8 @@ var allowCrossDomain = function (req, res, next) {
   res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, PATCH, OPTIONS");
   next();
 };
+
+
 app.use(allowCrossDomain);
 
 // Use the body-parser package in our application

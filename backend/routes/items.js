@@ -93,7 +93,6 @@ module.exports = function (router) {
                 new_item.postDate = Date.now();
             }
 
-            
             if ('images' in req.body && req.body.images){
               new_item.images = req.body.images;
             }
