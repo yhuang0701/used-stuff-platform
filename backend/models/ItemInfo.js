@@ -11,7 +11,16 @@ const itemInfoSchema = new Schema({
         type: String,
         required: true
     },
+    price: {
+        type:Number,
+        required: true,
+        default:0
+    },
     label: [{
+        type: String,
+        required: true
+    }],
+    locations: [{
         type: String,
         required: true
     }],

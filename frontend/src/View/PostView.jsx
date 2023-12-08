@@ -10,14 +10,30 @@ const CreatePostView = () => {
     const [content, setContent] = useState('');
     const [tags, setTags] = useState([]);
     const [tagInput, setTagInput] = useState('');
+    const [selectedLocations, setSelectedLocations] = useState([]); // State for selected meet-up locations
+    const [price, setPrice] = useState(0);
+
+
 
     const handleImageChange = (event) => {
         // Assuming you want to keep previous images and add new ones
         setImages([...images, ...event.target.files]);
     };
 
+    const handlePriceChange = (event) => {
+        setPrice(event.target.value);
+    };
     const handleTagInputChange = (e) => {
         setTagInput(e.target.value);
+    };
+
+    const handleLocationChange = (e) => {
+        const value = e.target.value;
+        if (e.target.checked) {
+            setSelectedLocations([...selectedLocations, value]);
+        } else {
+            setSelectedLocations(selectedLocations.filter((location) => location !== value));
+        }
     };
 
     const handleRemoveImage = (indexToRemove) => {
@@ -93,13 +109,20 @@ const CreatePostView = () => {
             formData.append('label', tag);
         });
 
+        selectedLocations.forEach(location  => {
+            formData.append(`locations`, location);
+        });
 
-        console.log(tags)
+
+
+        console.log(selectedLocations)
 
         // Append other form fields to the FormData object
         formData.append('userID', "656ffec0931a250a4c348812");
         formData.append('name', title);
         formData.append('description', content);
+        formData.append('price', price);
+
 
         try {
             const response = await fetch('http://localhost:5003/api/items', {
@@ -121,8 +144,8 @@ const CreatePostView = () => {
             // Handle errors here
         }
 
-        //alert('Post complete!');
-        //window.location.href = '/';
+        alert('Post complete!');
+        window.location.href = '/';
 
     };
 
@@ -158,6 +181,22 @@ const CreatePostView = () => {
                     onChange={handleTitleChange}
                 />
             </div>
+
+                <h1>Set Item Price:</h1>
+                <div className="price-slider-section">
+                    <input
+                        type="range"
+                        min="0"
+                        max="1000"
+                        value={price}
+                        onChange={handlePriceChange}
+                        className="price-slider"
+                    />
+                    <div>Price: ${price}</div>
+                </div>
+
+
+
             <h1> Item descriptions:</h1>
             <div className="content-section">
                 <textarea
@@ -185,18 +224,30 @@ const CreatePostView = () => {
             </div>
 
 
-            <h1>Meet up location:</h1>
-            <div className="location-checkbox-section">
-                <div className="checkbox-group">
-                    <input type="checkbox" id="location1" name="location" value="CS Building" />
-                    <label htmlFor="location1">CS Building</label>
+                <h1>Meet up location:</h1>
+                <div className="location-checkbox-section">
+                    <div className="checkbox-group">
+                        <input
+                            type="checkbox"
+                            id="location1"
+                            name="location"
+                            value="CS Building"
+                            onChange={handleLocationChange}
+                        />
+                        <label htmlFor="location1">CS Building</label>
 
-                    <input type="checkbox" id="location2" name="location" value="Illini Union" />
-                    <label htmlFor="location2">Illini Union</label>
+                        <input
+                            type="checkbox"
+                            id="location2"
+                            name="location"
+                            value="Illini Union"
+                            onChange={handleLocationChange}
+                        />
+                        <label htmlFor="location2">Illini Union</label>
 
-                    {/* Add more locations as needed */}
+                        {/* Add more locations as needed */}
+                    </div>
                 </div>
-            </div>
 
 
             <div className="submit-section">

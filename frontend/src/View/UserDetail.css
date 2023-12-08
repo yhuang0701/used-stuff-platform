@@ -2,7 +2,7 @@
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     max-width: 1200px;
     margin: 5px auto;
-    height: 100vh; /* Make the div take up the full height of the viewport */
+    height: auto; /* Make the div take up the full height of the viewport */
     background-color: #f9f9f9; /* Light grey background */
     text-align: center; /* Center the content */
 }
@@ -68,6 +68,13 @@
     border-radius: 10px; /* Rounded corners for item cards */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
     transition: box-shadow 0.3s; /* Smooth transition for shadow on hover */
+    width: 300px; /* Fixed width for all items */
+    height: 400px; /* Fixed height for all items */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    display: flex; /* Use flexbox to align content */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Distribute space around items */
+    padding: 15px; /* Padding inside the items */
 }
 
 .item-container .item:hover {

@@ -92,12 +92,26 @@ module.exports = function (router) {
                 return res.status(500).send({message: 'Name Missing',data: []});
             }
 
+            if ('price' in req.body && req.body.name) {
+                new_item.price = req.body.price;
+            } else {
+                return res.status(500).send({message: 'Name Missing',data: []});
+            }
+
+
             if ('label' in req.body & req.body.label.length > 0) {
                 console.log('req.body.labels:', req.body.label);
 
                 new_item.label = req.body.label;
             } else {
-                return res.status(400).send({ message: 'Labels missing or not in the correct format', data: [] });
+                return res.status(500).send({ message: 'Labels missing or not in the correct format', data: [] });
+            }
+
+            if ('locations' in req.body & req.body.locations.length > 0) {
+
+                new_item.locations = req.body.locations;
+            } else {
+                return res.status(500).send({ message: 'Labels missing or not in the correct format', data: [] });
             }
 
 

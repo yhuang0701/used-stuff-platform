@@ -13,17 +13,22 @@
     transform: translateY(-5px); /* slight lift on hover */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* deeper shadow on hover */
 }
-
 .item-image {
     position: relative;
+    width: 100%; /* Set a specific width or use a percentage to make it responsive */
+    height: 200px; /* Set a fixed height for the image frame */
     background-color: #ccc; /* Background color for images */
+    display: flex; /* Use flexbox to center the image */
+    justify-content: center; /* Center the image horizontally */
+    align-items: center; /* Center the image vertically */
+    overflow: hidden; /* Hide overflow to maintain the frame size */
 }
 
 .item-image img {
-    width: 100%;
-    display: block;
-    height: auto;
-    background-color: #ccc;
+    max-width: 300%; /* Max width is 100% of the frame */
+    max-height: 300%; /* Max height is 100% of the frame */
+    object-fit: contain; /* Make sure the image is contained within the frame, maintaining aspect ratio */
+    background-color: #ccc; /* Background color shows if the image is smaller than the frame */
 }
 
 .item-details {
@@ -32,6 +37,7 @@
     border-top: 1px solid #1460AA; /* UIUC Blue border */
     font-family: 'Arial', sans-serif; /* Modern sans-serif font */
 }
+
 
 
 .like-icon {
