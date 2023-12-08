@@ -4,7 +4,7 @@ var Item = require('../models/ItemInfo.js');
 const fs = require('fs');
 const path = require('path');
 
-const uploadsDir = path.join('.', 'uploads');
+const uploadsDir = path.join(__dirname,'..', 'uploads');
 
 // This checks if the directory exists, and if it doesn't, it creates it.
 if (!fs.existsSync(uploadsDir)){
@@ -95,7 +95,7 @@ module.exports = function (router) {
             if ('price' in req.body && req.body.name) {
                 new_item.price = req.body.price;
             } else {
-                return res.status(500).send({message: 'Name Missing',data: []});
+                return res.status(500).send({message: 'price Missing',data: []});
             }
 
 
@@ -135,7 +135,10 @@ module.exports = function (router) {
 
 
             if (req.files) {
-                new_item.images = req.files.map(file => file.path); // Store the paths of the uploaded files
+                new_item.images = req.files.map(file => {
+                    // Replace the absolute path with the relative path
+                    return '/uploads/' + path.relative(uploadsDir, file.path);
+                });
             }
 
 

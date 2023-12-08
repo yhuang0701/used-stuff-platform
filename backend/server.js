@@ -34,7 +34,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 
-app.use('/uploads', express.static(path.join('.', 'uploads')));
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 
 app.get('/', (req, res) => {

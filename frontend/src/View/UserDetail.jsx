@@ -82,7 +82,7 @@ const UserDetail = () => {
             console.log(data)
             // Assuming the API returns an array of items:
             const itemsList = data.data.map(item => ({
-                imageSrc: item.images && item.images.length > 0 ? "http://localhost:5003/"+item.images[0] : ReactLogo, // Use the first image if available, otherwise a default
+                imageSrc: item.images && item.images.length > 0 ? "http://localhost:5003"+item.images[0] : ReactLogo, // Use the first image if available, otherwise a default
                 itemName: item.name,
                 price: "20",
                 userName: item.userID,
@@ -101,7 +101,7 @@ const UserDetail = () => {
         fetchData().then(fetchedItems => {
             setItems(fetchedItems); // Set the items in state
             // Assuming you want all items to be unliked initially
-            setLikedItems(fetchedItems.map(item => false));
+            //setLikedItems(fetchedItems.map(item => false));
         });
     }, []); // Empty dependency array to only run once on mount
 
