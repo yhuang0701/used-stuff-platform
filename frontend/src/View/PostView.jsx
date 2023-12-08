@@ -24,7 +24,12 @@ const CreatePostView = () => {
         setPrice(event.target.value);
     };
     const handleTagInputChange = (e) => {
-        setTagInput(e.target.value);
+        const value = e.target.value;
+        if (e.target.checked) {
+            setTags([...tags,value]);
+        } else {
+            setTags(tags.filter((tag) => tag !== value));
+        }
     };
 
     const handleLocationChange = (e) => {
@@ -43,33 +48,8 @@ const CreatePostView = () => {
     const handleTitleChange = (event) => setTitle(event.target.value);
     const handleContentChange = (event) => setContent(event.target.value);
 
-    const handleTagInputKeyDown = (e) => {
-        if (e.key === ' ' && tagInput) {
-            if (!tags.includes(tagInput)) { // Prevent adding duplicate tags
-                setTags([...tags, tagInput]);
-                setTagInput('');
-            } else {
-                setTagInput(''); // Clear input if tag is duplicate
-            }
-        } else if (e.key === 'Backspace' && !tagInput) {
-            setTags(tags.slice(0, tags.length - 1));
-        }
-    };
 
-    const removeTag = (index) => {
-        setTags(tags.filter((_, idx) => idx !== index));
-    };
 
-    const renderTags = () => {
-        return tags.map((tag, index) => (
-            <span key={index} className="tag">
-                {tag}
-                <button type="button" className="remove-tag-button" onClick={() => removeTag(index)}>
-                    <FontAwesomeIcon icon={faTimes} />
-                </button>
-            </span>
-        ));
-    };
 
     const renderImagePreviews = () => {
         return images.map((image, index) => {
@@ -192,6 +172,14 @@ const CreatePostView = () => {
                         onChange={handlePriceChange}
                         className="price-slider"
                     />
+                    <input
+                        type="number" // or "number" if you want to allow only numerical input
+                        value={price}
+                        onChange={handlePriceChange}
+                        placeholder="Enter price"
+                        className="price-input"
+                    />
+
                     <div>Price: ${price}</div>
                 </div>
 
@@ -207,21 +195,62 @@ const CreatePostView = () => {
             </div>
 
             <h1>Item Identification:</h1>
-            <div className="item-identification-section">
-                <div className="tag-input-container">
-                    <input
-                        type="text"
-                        id="item-identification"
-                        name="item_identification"
-                        placeholder="Enter item tag"
-                        className="item-tag-input"
-                        value={tagInput}
-                        onChange={handleTagInputChange}
-                        onKeyDown={handleTagInputKeyDown}
-                    />
-                    {renderTags()}
+                <div className="location-checkbox-section">
+                    <div className="checkbox-group">
+                        <input
+                            type="checkbox"
+                            id="tag1"
+                            name="item"
+                            value="Cloth"
+                            onChange={handleTagInputChange}
+                        />
+                        <label htmlFor="tag1">Cloth</label>
+
+                        <input
+                            type="checkbox"
+                            id="tag2"
+                            name="item"
+                            value="Beauty"
+                            onChange={handleTagInputChange}
+                        />
+                        <label htmlFor="tag2">Beauty</label>
+
+                        <input
+                            type="checkbox"
+                            id="tag3"
+                            name="item"
+                            value="Furniture"
+                            onChange={handleTagInputChange}
+                        />
+                        <label htmlFor="tag3">Furniture</label>
+
+                        <input
+                            type="checkbox"
+                            id="tag4"
+                            name="item"
+                            value="Electronic"
+                            onChange={handleTagInputChange}
+                        />
+                        <label htmlFor="tag4">Electronic</label>
+
+
+                        <input
+                            type="checkbox"
+                            id="tag5"
+                            name="item"
+                            value="Kitchenware"
+                            onChange={handleTagInputChange}
+                        />
+                        <label htmlFor="tag5">Kitchenware</label>
+
+
+                        {/* Add more locations as needed */}
+                    </div>
+
+
+
+
                 </div>
-            </div>
 
 
                 <h1>Meet up location:</h1>

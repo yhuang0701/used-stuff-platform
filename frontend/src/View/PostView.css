@@ -14,7 +14,7 @@
     padding: 20px;
     border: 1px solid var(--uiuc-dark-grey);
     border-radius: 8px;
-    background: white;
+    background: antiquewhite;
 }
 
 .create-post-container h1{
@@ -242,9 +242,12 @@
 .submit-section button:hover {
     background-color: #004494; /* Darker UIUC Blue */
 }
+
 .price-slider-section {
     margin: 20px 0;
     color: #004494; /* UIUC Blue */
+    text-align: center; /* Centers the inline elements */
+    background-color: antiquewhite; /* Light background color for contrast */
 }
 
 /* Style for the price slider input */
@@ -253,7 +256,7 @@
     appearance: none;
     width: 100%;
     height: 15px; /* Slider thickness */
-    background: #CCCCCC; /* Light grey background */
+    background: #004494; /* Light grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (and changes on hover) */
     -webkit-transition: .2s; /* Transition for smooth effect */
@@ -266,17 +269,32 @@
     appearance: none;
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
-    background: #004494; /* UIUC Blue for the slider handle */
+    background: #FF552E; /* UIUC Orange for the slider handle */
     cursor: pointer; /* Cursor on hover */
     border-radius: 50%; /* Circular slider handle */
+    border: 2px solid #004494; /* UIUC Blue border */
 }
 
 .price-slider::-moz-range-thumb {
     width: 25px; /* Width of the slider handle */
     height: 25px; /* Height of the slider handle */
-    background: #004494; /* UIUC Blue for the slider handle */
+    background: #FF552E; /* UIUC Orange for the slider handle */
     cursor: pointer;
     border-radius: 50%;
+    border: 2px solid #004494; /* UIUC Blue border */
+}
+
+/* Style for the number input */
+.price-input {
+    display: block; /* Makes it a block element */
+    width: 50%; /* Adjust width as needed */
+    margin: 10px auto; /* Centers the input field */
+    padding: 5px; /* Padding inside the input */
+    font-size: 16px; /* Adjust font size as needed */
+    border: 1px solid #004494; /* UIUC Blue border */
+    border-radius: 5px; /* Rounded corners */
+    color: #004494; /* UIUC Blue text color */
+    background-color: #FFF; /* White background for contrast */
 }
 
 /* Style for the price display */
@@ -284,7 +302,7 @@
     text-align: center;
     font-size: 1.2em;
     font-weight: bold;
-    color: #004494; /* UIUC Blue for text */
+    color: #FF552E; /* UIUC Orange for text */
 }
 
 /* Add hover effect for the slider */

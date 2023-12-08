@@ -84,7 +84,7 @@ const UserDetail = () => {
             const itemsList = data.data.map(item => ({
                 imageSrc: item.images && item.images.length > 0 ? "http://localhost:5003"+item.images[0] : ReactLogo, // Use the first image if available, otherwise a default
                 itemName: item.name,
-                price: "20",
+                price: item.price,
                 userName: item.userID,
                 postDate: item.postDate,
                 sold: item.sold,

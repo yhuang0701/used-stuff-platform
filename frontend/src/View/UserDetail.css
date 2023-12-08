@@ -3,7 +3,7 @@
     max-width: 1200px;
     margin: 5px auto;
     height: auto; /* Make the div take up the full height of the viewport */
-    background-color: #f9f9f9; /* Light grey background */
+    background-color: antiquewhite; /* Light grey background */
     text-align: center; /* Center the content */
 }
 

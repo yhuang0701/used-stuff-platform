@@ -15,6 +15,7 @@
 }
 .item-image {
     position: relative;
+    object-fit: cover;
     width: 100%; /* Set a specific width or use a percentage to make it responsive */
     height: 200px; /* Set a fixed height for the image frame */
     background-color: #ccc; /* Background color for images */
@@ -25,9 +26,10 @@
 }
 
 .item-image img {
-    max-width: 300%; /* Max width is 100% of the frame */
-    max-height: 300%; /* Max height is 100% of the frame */
-    object-fit: contain; /* Make sure the image is contained within the frame, maintaining aspect ratio */
+    max-width: 100%; /* Max width is 100% of the frame */
+    max-height: 100%; /* Max height is 100% of the frame */
+    display: block;
+    object-fit: cover ; /* Make sure the image is contained within the frame, maintaining aspect ratio */
     background-color: #ccc; /* Background color shows if the image is smaller than the frame */
 }
 
