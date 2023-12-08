@@ -2,18 +2,31 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 20px 20px; /* Increased vertical padding */
     background-color: #13294b; /* UIUC Navy Blue */
-    color: white; /* Text color for better contrast */
+    color: white;
     border-bottom: 1px solid #e7e7e7;
-}
+    position: fixed; /* Keep it fixed */
+    top: 0;
+    width: 100%;
+    z-index: 1000;
 
+}
+body {
+    padding-top: 110px; /* Adjust based on header height */
+}
 .header-button {
-    padding: 8px 15px;
+    padding: 12px 20px; /* Increased padding for larger buttons */
     text-decoration: none;
     color: #ff552e; /* UIUC Orange */
     border-radius: 20px;
     margin: 0 5px;
+    font-size: 20px; /* Larger font size for button text */
+}
+
+.faBell, .faUser, .faSearch, .faFilter {
+    font-size: 24px; /* Larger icon size */
+    margin-right: 10px;
 }
 
 .header-button:hover {
@@ -37,8 +50,8 @@
     position: absolute;
     right: 20px;
     color: #ccc;
+    font-size: 24px; /* Increased size for the search icon */
 }
-
 .search-input {
     padding: 8px 12px;
     padding-right: 30px;
@@ -61,7 +74,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 8px;
+    padding: 12px; /* Increased padding for larger filter icon area */
     border-radius: 20px;
     background-color: #f8f9fa;
     border: 1px solid #13294b; /* UIUC Navy Blue */
@@ -82,32 +95,19 @@
     align-items: center;
     margin-left: 15px;
 }
-
 .notifications-icon {
     background-color: #ff552e; /* UIUC Orange */
     color: white;
     border-radius: 50%;
-    font-size: 12px;
-    padding: 2px 6px;
+    font-size: 16px; /* Larger font size for notification text */
+    padding: 4px 8px; /* Adjust padding for better alignment */
     position: relative;
-    top: -10px;
-    right: -10px;
+    top: -15px; /* Adjusted positioning */
+    right: -15px;
 }
 
-.filter-options {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 4px;
-    top: 100%;
-    right: 0;
-    z-index: 100;
-}
 
-.faBell, .faUser {
-    margin-right: 5px;
-}
+
 
 .right-header-section {
     position: relative; /* Ensure the dropdown is positioned relative to this */
@@ -124,7 +124,7 @@
     display: none; /* Hide the dropdown content by default */
     position: absolute; /* Position the dropdown content absolutely within user-profile-dropdown */
     background-color: #E84A27; /* Background color for the dropdown - UIUC often uses white backgrounds */
-    min-width: 100px; /* Minimum width of the dropdown */
+    min-width: 120px; /* Minimum width of the dropdown */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for the dropdown */
     z-index: 1; /* Ensure the dropdown is above other content */
     border: 1px solid #c0c0c0; /* Optional: border to define the dropdown */
@@ -136,10 +136,11 @@
 
 .user-profile-dropdown .dropdown-content a {
     color: white; /* UIUC Blue for text */
-    padding: 12px 16px; /* Padding for the dropdown links */
-    text-decoration: none; /* No underline for links */
-    display: block; /* Dropdown links should take up the full width */
-    text-align: left; /* Align text to the left */
+    padding: 15px 20px; /* Increased padding for larger dropdown links */
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    font-size: 16px; /* Larger font size for dropdown text */
 }
 
 .user-profile-dropdown .dropdown-content a:hover {
