@@ -1,26 +1,29 @@
 // Assuming auth.js is in the same directory
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const User = require('./Auth.js'); // Import User model
 
 const itemInfoSchema = new Schema({
     userID: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    itemID: {
-        type: Schema.Types.ObjectId,
+        type: String,
         required: true
     },
     name: {
         type: String,
         required: true
     },
-    label: {
+    price: {
+        type:Number,
+        required: true,
+        default:0
+    },
+    label: [{
         type: String,
         required: true
-    },
+    }],
+    locations: [{
+        type: String,
+        required: true
+    }],
     description: {
         type: String,
         required: true
@@ -34,7 +37,7 @@ const itemInfoSchema = new Schema({
     },
     sold: {
         type: Boolean,
-        required: true
+        default:false
     }
 });
 
