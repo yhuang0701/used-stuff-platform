@@ -36,6 +36,7 @@ app.use(bodyParser.json());
 
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: "Welcome to the Used Stuff Platform" })

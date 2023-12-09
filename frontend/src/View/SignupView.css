@@ -23,12 +23,22 @@
 .sign-up-container form {
     display: flex;
     flex-direction: column;
+    align-items: center; /* Align form fields in the center */
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align label and input container to the start */
+    width: 100%; /* Full width to accommodate the longest label */
+    margin-bottom: 10px; /* Space between form fields */
 }
 
 .sign-up-container label {
-    font-size: 1rem;
+    margin-bottom: 5px;
     color: var(--uiuc-blue);
-    margin-bottom: 10px;
+    text-align: left; /* Align the text of labels to the left */
+    width: 100%; /* Full width to fill the flex container */
 }
 
 .sign-up-container input {
@@ -36,26 +46,13 @@
     border-radius: 4px;
     font-size: 1rem;
     padding: 10px;
-    margin: 20px;
+    width: calc(100% - 40px); /* Full width minus margin */
+    margin: 0 20px; /* Center input with horizontal margin */
 }
 
-.sign-up-container input[type='submit'] {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: var(--uiuc-orange);
-    color: white;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.sign-up-container input[type='submit']:hover {
-    background-color: #ff7740; /* Lighter UIUC Orange for hover */
-}
-
-.error-message {
-    color: red;
-    text-align: center;
-    margin-top: 10px;
+/* Add styles for the submit button alignment if necessary */
+.submit-button-container {
+    width: 100%; /* Full width to center the button */
+    display: flex;
+    justify-content: center; /* Center button horizontally */
 }

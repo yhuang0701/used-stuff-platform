@@ -46,7 +46,7 @@ const registerUser = async (req, res) => {
     res.status(201).json({ message: "User registered successfully" });
   } catch (error) {
     console.error('Error saving to datebase: ', error);
-    res.status(500).send('Error registering new user. Please try again.');
+    res.status(500).send('User Name already exist Please try again.');
   }
 };
 
