@@ -105,7 +105,7 @@ const CreatePostView = () => {
 
 
         try {
-            const response = await fetch('http://localhost:5003/api/items', {
+            const response = await fetch('http://localhost:8000/api/items', {
                 method: 'POST',
                 body: formData // Send the FormData object
                 // Note: When sending FormData, the 'Content-Type' header should not be set manually

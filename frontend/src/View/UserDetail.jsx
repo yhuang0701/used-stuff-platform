@@ -52,7 +52,7 @@ const UserDetail = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5003/api/users/656ffec0931a250a4c348812')
+        fetch('http://localhost:8000/api/users/656ffec0931a250a4c348812')
             .then(response => {
                 console.log('response received',response)
                 if (!response.ok) {
@@ -74,7 +74,7 @@ const UserDetail = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:5003/api/items'); // Replace with your actual API endpoint
+            const response = await fetch('http://localhost:8000/api/items'); // Replace with your actual API endpoint
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -82,7 +82,7 @@ const UserDetail = () => {
             console.log(data)
             // Assuming the API returns an array of items:
             const itemsList = data.data.map(item => ({
-                imageSrc: item.images && item.images.length > 0 ? "http://localhost:5003"+item.images[0] : ReactLogo, // Use the first image if available, otherwise a default
+                imageSrc: item.images && item.images.length > 0 ? "http://localhost:8000"+item.images[0] : ReactLogo, // Use the first image if available, otherwise a default
                 itemName: item.name,
                 price: item.price,
                 userName: item.userID,
