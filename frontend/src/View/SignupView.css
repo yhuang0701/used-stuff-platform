@@ -1,52 +1,37 @@
-/* SignInView.css */
+/* SignUpView.css */
 
-:root {
-    --uiuc-orange: #E84A27;
-    /* UIUC Orange */
-    --uiuc-blue: #13294b;
-    /* UIUC Navy Blue */
-    --uiuc-light-grey: #f4f4f4;
-    --uiuc-dark-grey: #ccc;
-}
-
-.sign-in-container {
+.sign-up-container {
     width: 80%;
     max-width: 400px;
-    /* Adjusted for sign-in form */
     margin: 50px auto;
-    /* More margin for centered look */
     padding: 20px;
     border: 1px solid var(--uiuc-dark-grey);
     border-radius: 8px;
     background: white;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    /* Add shadow for depth */
 }
 
-.sign-in-container h2 {
+.sign-up-container h2 {
     font-family: 'Helvetica Neue', sans-serif;
     font-size: 24px;
-    /* Slightly larger for sign-in title */
     color: var(--uiuc-blue);
     margin-bottom: 30px;
-    /* More space below the title */
     text-align: center;
-    /* Center the title */
     font-weight: bold;
 }
 
-.sign-in-container form {
+.sign-up-container form {
     display: flex;
     flex-direction: column;
 }
 
-.sign-in-container label {
+.sign-up-container label {
     font-size: 1rem;
     color: var(--uiuc-blue);
     margin-bottom: 10px;
 }
 
-.sign-in-container input {
+.sign-up-container input {
     border: 1px solid var(--uiuc-dark-grey);
     border-radius: 4px;
     font-size: 1rem;
@@ -54,7 +39,7 @@
     margin: 20px;
 }
 
-.sign-in-container input[type='submit'] {
+.sign-up-container input[type='submit'] {
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
@@ -65,9 +50,8 @@
     transition: background-color 0.3s;
 }
 
-.sign-in-container input[type='submit']:hover {
-    background-color: #ff7740;
-    /* Lighter UIUC Orange for hover */
+.sign-up-container input[type='submit']:hover {
+    background-color: #ff7740; /* Lighter UIUC Orange for hover */
 }
 
 .error-message {
