@@ -16,16 +16,19 @@ const UserDetail = () => {
         userName: 'Default User',
         rating: '4.8',
         email: 'z18819828123@gmail.com',
-        _id: "656ffec0931a250a4c348812" // or some default ID if applicable
+        _id: "00" // or some default ID if applicable
     });
     const [itemsData, setItemsData] = useState([]);
     const [likedItems, setLikedItems] = useState({});
     const [items, setItems] = useState([]);
 
 
+    // http://localhost:5003/api/users/:id
 
     useEffect(() => {
-        axios.get('http://localhost:5003/api/users/656ffec0931a250a4c348812')
+        const userid = "656ffec0931a250a4c348812"
+
+        axios.get('https://used-stuff-platform.onrender.com/api/users/'+userid)
             .then(response => {
                 if (response.data && response.data.data) {
                     setUserData(response.data.data);
@@ -48,7 +51,7 @@ const UserDetail = () => {
             const response = await axios.get(url);
 
             const itemsList = response.data.data.map(item => ({
-                imageSrc: item.images && item.images.length > 0 ? "http://localhost:5003"+item.images[0] : ReactLogo,
+                imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com"+item.images[0] : ReactLogo,
                 itemName: item.name,
                 price: item.price,
                 userName: item.userID,
