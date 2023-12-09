@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './SignupView.css'
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+    const navigate = useNavigate()
   const [formData, setFormData] = useState({
     userName: '',
     password: '',
     email: '',
     contact: '',
-    items: '',
+    items: [],
+    liked:[],
     rating: 0
   });
 
@@ -19,12 +22,15 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/users/signup', formData);
+        console.log("sign up user data: ",formData)
+      const response = await axios.post('http://127.0.0.1:8000/users/signup', formData);
       console.log(response.data);
+      alert(response.data.message);
+        navigate('/post')
       // Handle post-signup logic here (e.g., redirect to login)
     } catch (error) {
-      console.error('Error during registration:', error);
-      // Handle errors here (e.g., show error message)
+        console.log(error)
+        alert(error.response.data)
     }
   };
 
@@ -32,35 +38,35 @@ const SignUp = () => {
     <div className="sign-up-container">
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username
+        <div className="form-field">
+          <label>Username</label>
           <input type="text" name="userName" value={formData.userName} onChange={handleChange} placeholder="Username" required />
-        </label>
+        </div>
         
-        <label>
-          Password
+        <div className="form-field">
+          <label>Password</label>
           <input type="password" name="password" value={formData.password} onChange={handleChange} placeholder="Password" required />
-        </label>
+        </div>
         
-        <label>
-          Email
+        <div className="form-field">
+          <label>Email</label>
           <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
-        </label>
+        </div>
         
-        <label>
-          Contact
+        <div className="form-field">
+          <label>Contact</label>
           <input type="text" name="contact" value={formData.contact} onChange={handleChange} placeholder="Contact" />
-        </label>
+        </div>
         
-        <label>
-          Items
-          <input type="text" name="items" value={formData.items} onChange={handleChange} placeholder="Items" />
-        </label>
-  
-        <input type="submit" value="Sign Up" />
+        {/* Other fields... */}
+    
+        <div className="submit-button-container">
+          <input type="submit" value="Sign Up" />
+        </div>
       </form>
     </div>
   );
+  
   
   
 };

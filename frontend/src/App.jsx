@@ -16,7 +16,7 @@ const App = () => {
                     <Route path="/post" element={<Post />} />
                     <Route path='/user/signin' element={<SignIn />} />
                     <Route path='/user/signup' element={<SignUp/>} />
-
+                    {/* <Route path='/home'></> */}
                     {/* Add additional routes for other pages */}
                 </Routes>
             </main>

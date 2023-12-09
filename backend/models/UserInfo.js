@@ -25,11 +25,13 @@ const UerInfoSchema = new Schema({
     },
     liked:[{
         type: Schema.Types.ObjectId,
-        ref: 'Item'
+        ref: 'Item',
+        default:[]
     }],
     items: [{
         type: Schema.Types.ObjectId,
-        ref: 'Item'
+        ref: 'Item',
+        default:[]
     }]
 });
 

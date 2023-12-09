@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './SigninView.css'
 
 const SignIn = () => {
+    const navigate = useNavigate()
     const [userData, setUserData] = useState({
         userName: '',
         password: ''
@@ -23,14 +25,18 @@ const SignIn = () => {
         e.preventDefault();
         setError('');
         try {
-            const response = await axios.post('/users/signin', userData);
+            console.log("userDate: ",userData)
+            const response = await axios.post('http://127.0.0.1:8000/users/signin', userData);
             alert(response.data.message); // Or handle the successful login as needed
+            navigate('/post');
         } catch (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
+                console.log(error); 
                 setError(error.response.data.message);
             } else {
+                console.log("error: ",error)
                 setError('Failed to log in. Please try again later.');
             }
         }
