@@ -8,6 +8,7 @@ import UserDetail from './View/UserDetail'
 import UserDashboard from './View/UserDashboard';
 import Search from './View/Search';
 
+import SignUp from './View/SignupView';
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                     <Route path="/profile" element={<UserDashboard />} />
                     <Route path="/search" element={<Search />} />                    
                     <Route path='/user/signin' element={<SignIn />} />
+                    <Route path='/user/signup' element={<SignUp/>} />
 
                     {/* Add additional routes for other pages */}
                 </Routes>

@@ -25,6 +25,10 @@ const UserInfoSchema = new Schema({
         type: String,
         required: false
     },
+    liked:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
     items: [{
         type: String // Assuming images are stored as URLs or paths
     }],
