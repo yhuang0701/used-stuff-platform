@@ -244,6 +244,15 @@ const CreatePostView = () => {
                         />
                         <label htmlFor="tag5">Kitchenware</label>
 
+                        <input
+                            type="checkbox"
+                            id="tag6"
+                            name="item"
+                            value="Book"
+                            onChange={handleTagInputChange}
+                        />
+                        <label htmlFor="tag6">Book</label>
+
 
                         {/* Add more locations as needed */}
                     </div>

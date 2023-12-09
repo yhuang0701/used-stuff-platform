@@ -1,90 +1,103 @@
-/* Home.css */
-
 .home-page {
   display: flex;
   flex-direction: column;
 }
-  
-  .books-section,
-  .furniture-section,
-  .cloth-section {
-    margin-bottom: 40px;
-  }
 
-  .section {
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .books-section {
-    background-color: lightcoral;
-    color: white; /* Text color for better visibility */
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .Furniture-section {
-    background-color: royalblue;
-    color: white; /* Text color for better visibility */
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .cloth-section {
-    background-color: lightgreen;
-    color: white; /* Text color for better visibility */
-    font-weight: bold;
+.books-section,
+.furniture-section,
+.cloth-section {
+  margin-bottom: 40px;
+}
+
+.section {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.books-section {
+  background-color: #3498db; 
+  color: white;
+  font-weight: bold;
   text-align: center;
-  }
-  
-  h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-  
-  .items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .item {
-    display: flex;
-    flex-wrap: wrap;
-    width: 300px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .price {
-    font-size: 18px;
-    margin-top: 10px;
-  }
-  
-  .more {
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-top: 10px;
-  }
-  
-  /* Add more styling as needed */
-  
+  margin-bottom: 20px;
+}
+
+.books-section h2{
+  font-size: 40px;
+}
+
+.furniture-section {
+  background-color: #e63946; /* UIUC Navy Blue */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.furniture-section h2{
+  font-size: 40px;
+}
+
+.cloth-section {
+  background-color: #f2c53d; /* UIUC Gold */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cloth-section h2{
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  width: 250px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.price {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.more {
+  background-color: #f05a28; /* UIUC Orange */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.more:hover {
+  background-color: #e55324; /* Darker UIUC Orange on hover */
+}
