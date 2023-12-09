@@ -23,6 +23,10 @@ const UerInfoSchema = new Schema({
         type: String,
         required: true
     },
+    liked:[{
+        type: Schema.Types.ObjectId,
+        ref: 'Item'
+    }],
     items: [{
         type: Schema.Types.ObjectId,
         ref: 'Item'
