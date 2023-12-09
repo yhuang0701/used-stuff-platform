@@ -23,7 +23,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
         console.log("sign up user data: ",formData)
-      const response = await axios.post('http://127.0.0.1:8000/users/signup', formData);
+      const response = await axios.post('http://127.0.0.1:5003/users/signup', formData);
       console.log(response.data);
       alert(response.data.message);
         navigate('/post')

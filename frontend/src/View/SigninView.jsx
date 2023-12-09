@@ -26,7 +26,7 @@ const SignIn = () => {
         setError('');
         try {
             console.log("userDate: ",userData)
-            const response = await axios.post('http://127.0.0.1:8000/users/signin', userData);
+            const response = await axios.post('http://127.0.0.1:5003/users/signin', userData);
             alert(response.data.message); // Or handle the successful login as needed
             navigate('/post');
         } catch (error) {
