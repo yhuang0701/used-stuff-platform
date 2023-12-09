@@ -93,5 +93,4 @@ module.exports = {
   registerUser,
   loginUser,
   getAllUsers
-  getAllUsers
 }
