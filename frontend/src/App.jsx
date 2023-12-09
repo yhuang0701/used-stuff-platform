@@ -6,6 +6,7 @@ import Post from './View/PostView'
 import UserDetail from './View/UserDetail'
 import UserDashboard from './View/UserDashboard';
 import Search from './View/Search';
+import Home from './View/Home';
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
             <Header />
             <main>
                 <Routes>
+                    <Route path="/home" element={<Home />} />
                     <Route path="/post" element={<Post />} />
                     <Route path="/UserDetail" element={<UserDetail />} />
                     <Route path="/profile" element={<UserDashboard />} />

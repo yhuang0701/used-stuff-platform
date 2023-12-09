@@ -33,7 +33,7 @@ const Header = () => {
         <header className="header">
             {/* Left side of the header containing Home link and search form */}
             <div className="left-header-section">
-                <Link to="/" className="header-button">Home</Link>
+                <Link to="/home" className="header-button">Home</Link>
 
                 <div className="search-and-filter">
                     {/* Search form with a text input */}
