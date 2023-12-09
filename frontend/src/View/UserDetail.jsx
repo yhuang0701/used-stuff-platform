@@ -44,11 +44,15 @@ const UserDetail = () => {
     const fetchData = async (userId) => {
         try {
             console.log(userId)
-            //const response = await axios.get(`http://localhost:5003/api/items?userId=${userId}`);
-            //const query = encodeURIComponent(JSON.stringify({ "_id": userId }));
-            const url = "http://localhost:5003/api/items?where{"+userId+"}";
+
+            //https://used-stuff-platform.onrender.com/api/items?where={"userID": "656ffec0931a250a4c348812"}
+
+            const url = "https://used-stuff-platform.onrender.com/api/items?where={\"userID\":\"" + userId +"\"}";
+
+            console.log(url)
 
             const response = await axios.get(url);
+
 
             const itemsList = response.data.data.map(item => ({
                 imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com"+item.images[0] : ReactLogo,
@@ -61,6 +65,7 @@ const UserDetail = () => {
             }));
             return itemsList;
         } catch (error) {
+
             console.error('There was a problem fetching the item data:', error);
         }
     };
