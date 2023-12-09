@@ -2,10 +2,9 @@
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     max-width: 1200px;
     margin: 5px auto;
-    height: 100vh; /* Full height of the viewport */
-    background-color: #f9f9f9; /* Light grey background */
-    text-align: center; /* Center content */
-    position: sticky; /* Make it stick to the top within its container */
+    height: auto; /* Make the div take up the full height of the viewport */
+    background-color: antiquewhite; /* Light grey background */
+    text-align: center; /* Center the content */
 }
 
 .item-detail-page h1 {
@@ -17,10 +16,9 @@
 }
 
 .user-image-frame {
-    margin-top: 30px;
     width: 150px;
     height: 150px;
-    margin: 30px auto 30px; /* Increased space below the image frame */
+    margin: 20px auto 30px; /* Increased space below the image frame */
     border: 3px solid #e84a27; /* UIUC Orange for the frame */
     border-radius: 50%; /* Circular frame */
     overflow: hidden;
@@ -36,8 +34,8 @@
 }
 
 .contact-button {
-
-    color: #e84a27;
+    background-color: #e84a27;
+    color: #fff;
     border: none;
     border-radius: 4px;
     padding: 10px 15px; /* Adjusted padding to fit icon */
@@ -70,6 +68,13 @@
     border-radius: 10px; /* Rounded corners for item cards */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
     transition: box-shadow 0.3s; /* Smooth transition for shadow on hover */
+    width: 300px; /* Fixed width for all items */
+    height: 400px; /* Fixed height for all items */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    display: flex; /* Use flexbox to align content */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Distribute space around items */
+    padding: 15px; /* Padding inside the items */
 }
 
 .item-container .item:hover {
