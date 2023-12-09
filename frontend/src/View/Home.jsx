@@ -7,6 +7,9 @@ import Item from '../components/Item';
 
 function Home() {
   const [items, setItems] = useState([]);
+  const [numItemsToShowF, setNumItemsToShowF] = useState(5);
+  const [numItemsToShowB, setNumItemsToShowB] = useState(5);
+  const [numItemsToShowC, setNumItemsToShowC] = useState(5);
 
   useEffect(() => {
     // Fetch data from your API
@@ -17,10 +20,9 @@ function Home() {
   }, []); // Empty dependency array means this effect runs once when the component mounts
 
 
-
-
   const FurnitureItems = items
     .filter(item => item.label.includes('Furniture'))
+    .slice(0, numItemsToShowF)
     .map(item => ({
       imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com" + item.images[0] : ReactLogo,
       itemName: item.name,
@@ -34,6 +36,7 @@ function Home() {
 
   const clothItems = items
     .filter(item => item.label.includes('Cloth'))
+    .slice(0, numItemsToShowC)
     .map(item => ({
       imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com" + item.images[0] : ReactLogo,
       itemName: item.name,
@@ -47,6 +50,7 @@ function Home() {
   // Filter items with the label "book"
   const bookItems = items
     .filter(item => item.label.includes('Book'))
+    .slice(0, numItemsToShowB)
     .map(item => ({
       imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com" + item.images[0] : ReactLogo,
       itemName: item.name,
@@ -56,6 +60,16 @@ function Home() {
       sold: item.sold,
       like: false
     }));
+
+  const handleMoreClickF = () => {
+    setNumItemsToShowF(prevNumItems => prevNumItems + 5);
+  };
+  const handleMoreClickB = () => {
+    setNumItemsToShowB(prevNumItems => prevNumItems + 5);
+  };
+  const handleMoreClickC = () => {
+    setNumItemsToShowC(prevNumItems => prevNumItems + 5);
+  };
 
 
 
@@ -86,7 +100,9 @@ function Home() {
             />
           ))}
         </div>
-        <button className="more">More</button>
+        <button className="more" onClick={handleMoreClickF}>
+          More
+        </button>
       </div>
 
 
@@ -105,7 +121,9 @@ function Home() {
             />
           ))}
         </div>
-        <button className="more">More</button>
+        <button className="more" onClick={handleMoreClickC}>
+          More
+        </button>
       </div>
 
       {/* Books Section */}
@@ -124,12 +142,11 @@ function Home() {
             />
           ))}
         </div>
-        <button className="more">More</button>
+        <button className="more" onClick={handleMoreClickB}>
+          More
+        </button>
       </div>
     </div>
-
-
-
 
   );
 }
