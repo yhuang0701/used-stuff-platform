@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './SigninView.css'
@@ -67,6 +67,7 @@ const SignIn = () => {
                             required
                         />
                     </div>
+                    <Link to="/user/signup">Doesn't have an account? Sign Up Here</Link>
                     {error && <p className="error-message">{error}</p>}
                     <input type="submit" value="Sign In" />
                 </form>

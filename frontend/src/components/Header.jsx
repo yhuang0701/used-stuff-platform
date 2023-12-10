@@ -84,8 +84,9 @@ const Header = () => {
                             <FontAwesomeIcon icon={faUser} /> {/* User profile icon */}
                         </Link>
                         <div className="dropdown-content">
-                            <Link to="/signin">Sign In</Link>
+                            <Link to="/user/signin">Sign In</Link>
                             <Link to="/signout">Sign Out</Link>
+                            
                         </div>
                     </div>
                 </div>
