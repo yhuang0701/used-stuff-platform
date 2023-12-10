@@ -6,7 +6,6 @@ import { faPlus, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
 import Item from '../components/Item';
 import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 
 
 function Home() {
@@ -15,6 +14,27 @@ function Home() {
   const [numItemsToShowB, setNumItemsToShowB] = useState(5);
   const [numItemsToShowC, setNumItemsToShowC] = useState(5);
 
+  // Custom arrow component for previous button
+const CustomPrevArrow = (props) => (
+  <div
+    {...props}
+    className="slick-arrow slick-prev"
+    style={{ bottom: '0px', left: '10px', zIndex: 1 }}
+  >
+    <FontAwesomeIcon icon={faChevronLeft} />
+  </div>
+);
+
+// Custom arrow component for next button
+const CustomNextArrow = (props) => (
+  <div
+    {...props}
+    className="slick-arrow slick-next"
+    style={{ bottom: '0px', right: '10px', zIndex: 1 }}
+  >
+    <FontAwesomeIcon icon={faChevronRight} />
+  </div>
+);
 
 
   const carouselSettings = {
@@ -23,6 +43,23 @@ function Home() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
+    appendDots: dots => (
+      <div
+        style={{
+          bottom: '0px',
+          position: 'absolute',
+          textAlign: 'center',
+          width: '100%',
+        }}
+      >
+        <ul style={{ listStyle: 'none',
+          padding: '0',
+          display: 'flex', 
+          justifyContent: 'center' }}>{dots}</ul>
+      </div>
+    ),
+    prevArrow: <CustomPrevArrow />,
+    nextArrow: <CustomNextArrow />,
   };
 
 

@@ -158,8 +158,6 @@ h2 {
   position: relative;
   display: block;
   overflow: hidden;
-  margin: 0;
-  padding: 0;
 }
 
 .slick-track {
@@ -170,49 +168,38 @@ h2 {
 
 .slick-slide {
   transition: transform 0.3s;
-  height: auto; /* Ensure each slide takes the height of its content */
+  height: auto; 
 }
 
-.slick-dots {
-  position: absolute;
-  bottom: 10px;
-  list-style: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  z-index: 1; /* Ensure the dots appear above the images */
-}
 
 .slick-dots li {
   margin: 0 5px;
 }
 
 .slick-dots button {
-  font-size: 12px;
+  font-size: 0;
   line-height: 1;
   display: block;
   padding: 5px;
-  color: #333;
+  color: #555;
   background-color: transparent;
-  border: 1px solid #333;
+  border: 1px solid #555;
   border-radius: 50%;
   cursor: pointer;
+  height: 12px;
+  width: 12px;
 }
 
 .slick-dots button:hover {
   color: #fff;
-  background-color: #333;
+  background-color: #555;
 }
 
 .carousel-image-container {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
-  
 }
-
 
 
 /* Add this rule to set a fixed height for the images within the carousel */
@@ -232,5 +219,20 @@ h2 {
   pointer-events: none; /* Allow clicks to pass through the overlay */
 }
 
+.slick-prev,
+.slick-next {
+  font-size: 24px;
+  color: #fff;
+  position: absolute;
+  bottom: 10px; /* Adjust the distance from the bottom as needed */
+  z-index: 1;
+  cursor: pointer;
+}
 
+.slick-prev {
+  left: 10px;
+}
 
+.slick-next {
+  right: 10px;
+}
