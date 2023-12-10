@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { faPlus, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
 import Item from '../components/Item';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 
 function Home() {
@@ -10,6 +14,17 @@ function Home() {
   const [numItemsToShowF, setNumItemsToShowF] = useState(5);
   const [numItemsToShowB, setNumItemsToShowB] = useState(5);
   const [numItemsToShowC, setNumItemsToShowC] = useState(5);
+
+
+
+  const carouselSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  };
+
 
   useEffect(() => {
     // Fetch data from your API
@@ -71,6 +86,21 @@ function Home() {
     setNumItemsToShowC(prevNumItems => prevNumItems + 5);
   };
 
+  const handleLessClickF = () => {
+    // Decrease the number of items to show by 5, but not less than 5
+    setNumItemsToShowF(prevNumItems => Math.max(5, prevNumItems - 5));
+  };
+
+  const handleLessClickB = () => {
+    // Decrease the number of items to show by 5, but not less than 5
+    setNumItemsToShowB(prevNumItems => Math.max(5, prevNumItems - 5));
+  };
+
+  const handleLessClickC = () => {
+    // Decrease the number of items to show by 5, but not less than 5
+    setNumItemsToShowC(prevNumItems => Math.max(5, prevNumItems - 5));
+  };
+
 
 
   console.log("items: " + items);
@@ -82,7 +112,38 @@ function Home() {
   return (
     <div className="home-page">
       {/* Carousel Section */}
-      {/* ... (same as before) */}
+      
+      <div className="carousel-section">
+        <h2>Featured Items</h2>
+        <Slider {...carouselSettings}>
+          {/* Featured Item 1 */}
+          <div class = "carousel-image-container">
+            <img src="https://m.media-amazon.com/images/I/71DL+S6ihBL._AC_SY300_SX300_.jpg" alt="Featured Item 1" />
+            <div class="carousel-image-overlay"></div>
+          </div>
+          {/* Featured Item 2 */}
+          <div class = "carousel-image-container">
+            <img src="https://m.media-amazon.com/images/I/61gKkYQn6lL.__AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Featured Item 2" />
+            <div class="carousel-image-overlay"></div>
+          </div>
+          {/* Featured Item 3 */}
+          <div class = "carousel-image-container">
+            <img src="https://m.media-amazon.com/images/I/71v0BQo8T8L.__AC_SX300_SY300_QL70_FMwebp_.jpg" />
+            <div class="carousel-image-overlay"></div>
+          </div>
+          {/* Featured Item 4 */}
+          <div class = "carousel-image-container">
+            <img src="https://m.media-amazon.com/images/I/71eXjkfeO8L.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Featured Item 4" />
+            <div class="carousel-image-overlay"></div>
+          </div>
+          {/* Featured Item 5 */}
+          <div class = "carousel-image-container">
+            <img src="https://m.media-amazon.com/images/I/71kLT+J4CGL._AC_SY300_SX300_.jpg" alt="Featured Item 5" />
+            <div class="carousel-image-overlay"></div>
+          </div>
+        </Slider>
+      </div>
+
 
 
       {/* Furniture Section */}
@@ -101,8 +162,13 @@ function Home() {
           ))}
         </div>
         <button className="more" onClick={handleMoreClickF}>
-          More
+          Show More
         </button>
+        {numItemsToShowF > 5 && (
+          <button className="less" onClick={handleLessClickF}>
+            Show Less
+          </button>
+        )}
       </div>
 
 
@@ -122,8 +188,13 @@ function Home() {
           ))}
         </div>
         <button className="more" onClick={handleMoreClickC}>
-          More
+          Show More
         </button>
+        {numItemsToShowC > 5 && (
+          <button className="less" onClick={handleLessClickC}>
+            Show Less
+          </button>
+        )}
       </div>
 
       {/* Books Section */}
@@ -143,8 +214,13 @@ function Home() {
           ))}
         </div>
         <button className="more" onClick={handleMoreClickB}>
-          More
+          Show More
         </button>
+        {numItemsToShowB > 5 && (
+          <button className="less" onClick={handleLessClickB}>
+            Show Less
+          </button>
+        )}
       </div>
     </div>
 

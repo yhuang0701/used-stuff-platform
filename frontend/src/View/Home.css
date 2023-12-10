@@ -101,3 +101,136 @@ h2 {
 .more:hover {
   background-color: #e55324; /* Darker UIUC Orange on hover */
 }
+
+.less {
+  background-color: #f05a28; /* UIUC Orange */
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.less:hover {
+  background-color: #e55324; /* Darker UIUC Orange on hover */
+}
+
+
+.carousel-image {
+  width: 100%;
+  height: 250px; /* Use 100% to take the full height of the parent container */
+  object-fit: cover; /* Ensures the image covers the entire container */
+  border-radius: 8px; /* Add border-radius for rounded corners */
+}
+
+.carousel-section {
+  margin: 20px 0;
+  padding: 20px;
+  background: linear-gradient( 
+    to right, 
+    #eea2a2 0%, 
+    #bbc1bf 19%, 
+    #57c6e1 42%, 
+    #b49fda 79%, 
+    #7ac5d8 100%
+  ); 
+  border-radius: 8px;
+  position: relative;
+}
+
+.carousel-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #f05a28; /* Change color to orange */
+  text-align: center;
+}
+
+/* Styles for the react-slick carousel */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+}
+
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.slick-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slick-slide {
+  transition: transform 0.3s;
+  height: auto; /* Ensure each slide takes the height of its content */
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 10px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  z-index: 1; /* Ensure the dots appear above the images */
+}
+
+.slick-dots li {
+  margin: 0 5px;
+}
+
+.slick-dots button {
+  font-size: 12px;
+  line-height: 1;
+  display: block;
+  padding: 5px;
+  color: #333;
+  background-color: transparent;
+  border: 1px solid #333;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slick-dots button:hover {
+  color: #fff;
+  background-color: #333;
+}
+
+.carousel-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  
+}
+
+
+
+/* Add this rule to set a fixed height for the images within the carousel */
+.carousel-image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.carousel-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6)); /* Add a gradient overlay */
+  pointer-events: none; /* Allow clicks to pass through the overlay */
+}
+
+
+
