@@ -1,4 +1,4 @@
-var User = require('../models/UserInfo.js');
+    var User = require('../models/UserInfo.js');
 var Item = require('../models/ItemInfo.js');
 
 module.exports = function (router) {

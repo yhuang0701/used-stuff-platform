@@ -1,0 +1,58 @@
+/* SignUpView.css */
+
+.sign-up-container {
+    width: 80%;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid var(--uiuc-dark-grey);
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sign-up-container h2 {
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 24px;
+    color: var(--uiuc-blue);
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sign-up-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Align form fields in the center */
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align label and input container to the start */
+    width: 100%; /* Full width to accommodate the longest label */
+    margin-bottom: 10px; /* Space between form fields */
+}
+
+.sign-up-container label {
+    margin-bottom: 5px;
+    color: var(--uiuc-blue);
+    text-align: left; /* Align the text of labels to the left */
+    width: 100%; /* Full width to fill the flex container */
+}
+
+.sign-up-container input {
+    border: 1px solid var(--uiuc-dark-grey);
+    border-radius: 4px;
+    font-size: 1rem;
+    padding: 10px;
+    width: calc(100% - 40px); /* Full width minus margin */
+    margin: 0 20px; /* Center input with horizontal margin */
+}
+
+/* Add styles for the submit button alignment if necessary */
+.submit-button-container {
+    width: 100%; /* Full width to center the button */
+    display: flex;
+    justify-content: center; /* Center button horizontally */
+}

@@ -36,6 +36,7 @@ app.use(bodyParser.json());
 
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: "Welcome to the Used Stuff Platform" })
@@ -43,6 +44,7 @@ app.get('/', (req, res) => {
 
 // Use routes as a module (see index.js)
 require('./routes')(app, router);
+app.use('/users', require('./routes/userRoutes'));
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 console.log('Server running on port ' + PORT);
