@@ -103,9 +103,10 @@ const CreatePostView = () => {
         formData.append('description', content);
         formData.append('price', price);
 
+        //https://used-stuff-platform.onrender.com/
 
         try {
-            const response = await fetch('http://localhost:8000/api/items', {
+            const response = await fetch('https://used-stuff-platform.onrender.com/api/items', {
                 method: 'POST',
                 body: formData // Send the FormData object
                 // Note: When sending FormData, the 'Content-Type' header should not be set manually
@@ -242,6 +243,15 @@ const CreatePostView = () => {
                             onChange={handleTagInputChange}
                         />
                         <label htmlFor="tag5">Kitchenware</label>
+
+                        <input
+                            type="checkbox"
+                            id="tag6"
+                            name="item"
+                            value="Book"
+                            onChange={handleTagInputChange}
+                        />
+                        <label htmlFor="tag6">Book</label>
 
 
                         {/* Add more locations as needed */}

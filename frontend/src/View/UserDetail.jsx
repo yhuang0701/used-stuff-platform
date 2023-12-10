@@ -3,66 +3,35 @@ import Item from '../components/Item';
 import './UserDetail.css';
 import userimg from '../assets/panda.jpeg';
 import ReactLogo from '../assets/react.svg';
+import axios from 'axios';
+
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
 
 const UserDetail = () => {
 
-    const [userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState({
+        userName: 'Default User',
+        rating: '4.8',
+        email: 'z18819828123@gmail.com',
+        _id: "00" // or some default ID if applicable
+    });
     const [itemsData, setItemsData] = useState([]);
     const [likedItems, setLikedItems] = useState({});
     const [items, setItems] = useState([]);
 
 
-
-    const MockData = [
-        {
-            imageSrc:ReactLogo,
-            itemName: 'React Framework',
-            price: '$20',
-            userName: 'Developer',
-            Postdate: '11.30.2023',
-            Sold:true,
-            like:false
-        },
-        {
-            imageSrc:ReactLogo,
-            itemName: 'React Framework',
-            price: '$20',
-            userName: 'Developer',
-            Postdate: '11.30.2023',
-            Sold:false,
-            like:false
-        },
-        {
-            imageSrc:ReactLogo,
-            itemName: 'React Framework',
-            price: '$20',
-            userName: 'Developer',
-            Postdate: '11.30.2023',
-            Sold:true,
-            like:true
-        }
-    ];
-
-    // Array of item data, potentially fetched from an API
-
-
-
+    // http://localhost:5003/api/users/:id
 
     useEffect(() => {
-        fetch('http://localhost:8000/api/users/656ffec0931a250a4c348812')
+        const userid = "656ffec0931a250a4c348812"
+
+        axios.get('https://used-stuff-platform.onrender.com/api/users/'+userid)
             .then(response => {
-                console.log('response received',response)
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data && data.data ) {
-                    setUserData(data.data);
+                if (response.data && response.data.data) {
+                    setUserData(response.data.data);
                 } else {
                     console.log('No user data found');
                 }
@@ -72,17 +41,17 @@ const UserDetail = () => {
             });
     }, []);
 
-    const fetchData = async () => {
+    const fetchData = async (userId) => {
         try {
-            const response = await fetch('http://localhost:8000/api/items'); // Replace with your actual API endpoint
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await response.json();
-            console.log(data)
-            // Assuming the API returns an array of items:
-            const itemsList = data.data.map(item => ({
-                imageSrc: item.images && item.images.length > 0 ? "http://localhost:8000"+item.images[0] : ReactLogo, // Use the first image if available, otherwise a default
+            console.log(userId)
+            //const response = await axios.get(`http://localhost:5003/api/items?userId=${userId}`);
+            //const query = encodeURIComponent(JSON.stringify({ "_id": userId }));
+            const url = "http://localhost:5003/api/items?where{"+userId+"}";
+
+            const response = await axios.get(url);
+
+            const itemsList = response.data.data.map(item => ({
+                imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com"+item.images[0] : ReactLogo,
                 itemName: item.name,
                 price: item.price,
                 userName: item.userID,
@@ -90,7 +59,6 @@ const UserDetail = () => {
                 sold: item.sold,
                 like: false
             }));
-
             return itemsList;
         } catch (error) {
             console.error('There was a problem fetching the item data:', error);
@@ -98,13 +66,15 @@ const UserDetail = () => {
     };
 
     useEffect(() => {
-        fetchData().then(fetchedItems => {
-            setItems(fetchedItems); // Set the items in state
-            // Assuming you want all items to be unliked initially
-            //setLikedItems(fetchedItems.map(item => false));
-        });
-    }, []); // Empty dependency array to only run once on mount
+        console.log('Current userData._id:', userData ? userData._id : 'undefined');
 
+        // Check if userData is defined and has a valid _id
+        if (userData && userData._id) {
+            fetchData(userData._id).then(fetchedItems => {
+                setItems(fetchedItems || []);
+            });
+        }
+    }, [userData]); // Dependency on userData
 
 
     const toggleLike = (itemId) => {
@@ -115,18 +85,12 @@ const UserDetail = () => {
     };
 
     const renderItems = () => {
-        fetchData().then(itemsList => {
-            // Do something with itemsList, like setting state in a React component
-            console.log(itemsList);
-        });
-        console.log(MockData)
-        console.log([itemsData])
         return items.map((item, index) => (
             <Item
                 key={index}
                 {...item}
                 liked={likedItems[index]}
-                toggleLike={() => toggleLike(index)} // Pass the toggle function specific to the item
+                toggleLike={() => toggleLike(index)}
             />
         ));
     };
@@ -149,6 +113,7 @@ const UserDetail = () => {
 
 
             <div className="item-container">
+
                 {renderItems()}
             </div>
         </div>
