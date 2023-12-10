@@ -46,7 +46,7 @@ const CustomNextArrow = (props) => (
     appendDots: dots => (
       <div
         style={{
-          bottom: '0px',
+          bottom: '-10px',
           position: 'absolute',
           textAlign: 'center',
           width: '100%',

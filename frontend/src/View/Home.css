@@ -19,11 +19,19 @@
 }
 
 .books-section {
-  background-color: #3498db; 
-  color: white;
+  background: linear-gradient( 
+    to right, 
+    #eea2a2 0%, 
+    #bbc1bf 19%, 
+    #57c6e1 42%, 
+    #b49fda 79%, 
+    #7ac5d8 100%
+  ); 
+  color: orangered;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
+  margin-top: 20px;
 }
 
 .books-section h2{
@@ -31,11 +39,20 @@
 }
 
 .furniture-section {
-  background-color: #e63946; /* UIUC Navy Blue */
-  color: white;
+  background: linear-gradient( 
+    to right, 
+    #eea2a2 0%, 
+    #bbc1bf 19%, 
+    #57c6e1 42%, 
+    #b49fda 79%, 
+    #7ac5d8 100%
+  ); 
+  color:   orangered;
+  ;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  margin-top: 20px;
 }
 
 .furniture-section h2{
@@ -43,11 +60,19 @@
 }
 
 .cloth-section {
-  background-color: #f2c53d; /* UIUC Gold */
-  color: white;
+  background: linear-gradient( 
+    to right, 
+    #eea2a2 0%, 
+    #bbc1bf 19%, 
+    #57c6e1 42%, 
+    #b49fda 79%, 
+    #7ac5d8 100%
+  ); 
+  color: orangered;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 0;
+  margin-top: 20px;
 }
 
 .cloth-section h2{
@@ -57,7 +82,7 @@
 h2 {
   font-size: 24px;
   margin-bottom: 15px;
-  color: white;
+  color: #13294B;
 }
 
 .items {
@@ -126,8 +151,7 @@ h2 {
 }
 
 .carousel-section {
-  margin: 20px 0;
-  padding: 20px;
+  padding: 10px;
   background: linear-gradient( 
     to right, 
     #eea2a2 0%, 
@@ -136,7 +160,7 @@ h2 {
     #b49fda 79%, 
     #7ac5d8 100%
   ); 
-  border-radius: 8px;
+  /* border-radius: 10px; */
   position: relative;
 }
 
