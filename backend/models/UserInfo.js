@@ -25,7 +25,7 @@ const UserInfoSchema = new Schema({
         type: String,
         required: false
     },
-    liked:[{
+    favorite:[{
         type: Schema.Types.ObjectId,
         ref: 'Item',
         default:[]
