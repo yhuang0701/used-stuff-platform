@@ -46,7 +46,7 @@ const UserDetail = () => {
             console.log(userId)
             //const response = await axios.get(`http://localhost:5003/api/items?userId=${userId}`);
             //const query = encodeURIComponent(JSON.stringify({ "_id": userId }));
-            const url = "http://localhost:5003/api/items?where{"+userId+"}";
+            const url = "http://localhost:8000/api/items?where{"+userId+"}";
 
             const response = await axios.get(url);
 
