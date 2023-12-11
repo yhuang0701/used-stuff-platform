@@ -5,6 +5,8 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import './Home.css';
 import Item from '../components/Item';
 import "slick-carousel/slick/slick.css"; 
+import ItemDetail from '../components/ItemDetail'; 
+import Modal from '../components/Modal';
 
 const ReactLogo = 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg';
 
@@ -15,6 +17,8 @@ function Home() {
   const [numItemsToShowF, setNumItemsToShowF] = useState(itemsPerLine);
   const [numItemsToShowB, setNumItemsToShowB] = useState(itemsPerLine);
   const [numItemsToShowC, setNumItemsToShowC] = useState(itemsPerLine);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
  
   useEffect(() => {
     const handleResize = () => {
@@ -37,13 +41,13 @@ function Home() {
   function calculateItemsPerLine() {
     // Adjust this logic based on responsive design requirements
     const windowWidth = window.innerWidth;
-    if(windowWidth>=1500){
+    if(windowWidth>=1600){
       return 6; // LLL screens
-    } else if(windowWidth>=1250){
+    } else if(windowWidth>=1330){
       return 5; // LL screens
-    } else if (windowWidth >= 1000) {
+    } else if (windowWidth >= 1060) {
       return 4; // Large screens
-    } else if (windowWidth >= 750) {
+    } else if (windowWidth >= 790) {
       return 3; // Medium screens
     } else {
       return 2; // Small screens
@@ -182,6 +186,16 @@ const CustomNextArrow = (props) => (
     setNumItemsToShowC(calculateItemsPerLine());
   };
 
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeItemDetail = () => {
+    setSelectedItem(null);
+    setIsModalOpen(false);
+  };
+
 
 
   console.log("items: " + items);
@@ -260,6 +274,7 @@ const CustomNextArrow = (props) => (
               price={item.price}
               Sold={item.sold}
               like={false}
+              onClick={() => handleItemClick(item)}
             />
           ))}
         </div>
@@ -324,6 +339,14 @@ const CustomNextArrow = (props) => (
           </button>
         )}
       </div>
+
+      {/* Render the ItemDetail component if an item is selected */}
+      {isModalOpen && (
+        <Modal onClose={closeItemDetail}>
+          <ItemDetail selectedItem={selectedItem} onClose={closeItemDetail} />
+        </Modal>
+      )}
+
     </div>
 
   );
