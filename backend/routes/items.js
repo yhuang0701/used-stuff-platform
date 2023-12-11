@@ -67,6 +67,7 @@ module.exports = function (router) {
     // Create a New Item:
     // Endpoint: POST http://localhost:5173/api/items
     itemsRoute.post(upload.array('images'), async (req, res) => {
+        console.log(req.body)
         try {
               const new_item = new Item();
               if ('userID' in req.body && req.body.userID && req.body.userID.length > 0) {
@@ -99,7 +100,7 @@ module.exports = function (router) {
             }
 
 
-            if ('label' in req.body & req.body.label.length > 0) {
+            if ('label' in req.body && req.body.label.length > 0) {
                 console.log('req.body.labels:', req.body.label);
 
                 new_item.label = req.body.label;
@@ -107,19 +108,21 @@ module.exports = function (router) {
                 return res.status(500).send({ message: 'Labels missing or not in the correct format', data: [] });
             }
 
-            if ('locations' in req.body & req.body.locations.length > 0) {
 
+            console.log('req.body.locations:', req.body.locations);
+
+            if ('locations' in req.body && req.body.locations.length > 0) {
                 new_item.locations = req.body.locations;
-            } else {
-                return res.status(500).send({ message: 'Labels missing or not in the correct format', data: [] });
+            }else {
+                new_item.locations = [];
             }
+
 
 
             if ('description' in req.body && req.body.description){
                 new_item.description = req.body.description;
-            } else {
-                return res.status(500).send({ message: 'Description missing', data: [] });
             }
+
 
             if ('sold' in req.body && req.body.sold !== undefined){
                 new_item.sold = req.body.sold;

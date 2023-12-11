@@ -21,12 +21,10 @@ const itemInfoSchema = new Schema({
         required: true
     }],
     locations: [{
-        type: String,
-        required: true
+        type: String
     }],
     description: {
-        type: String,
-        required: true
+        type: String
     },
     images: [{
         type: String // Assuming images are stored as URLs or paths
