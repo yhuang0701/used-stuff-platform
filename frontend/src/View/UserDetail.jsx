@@ -28,7 +28,7 @@ const UserDetail = () => {
     useEffect(() => {
         // Access the state property from the location object
         const state = location.state;
-        const id = state?.userId ?? "656ffec0931a250a4c348812"; // use a default ID if state.userId is undefined
+        const id = state.userId // use a default ID if state.userId is undefined
         setUserId(id);
     }, [location]);
 

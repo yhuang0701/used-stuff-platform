@@ -114,8 +114,8 @@ module.exports = function (router) {
             if ('locations' in req.body && req.body.locations.length > 0) {
                 new_item.locations = req.body.locations;
             }else {
-                new_item.locations = [];
-            }
+              new_item.locations = [];
+           }
 
 
 
