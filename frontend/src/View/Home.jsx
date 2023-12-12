@@ -17,6 +17,7 @@ function Home() {
   const [numItemsToShowF, setNumItemsToShowF] = useState(itemsPerLine);
   const [numItemsToShowB, setNumItemsToShowB] = useState(itemsPerLine);
   const [numItemsToShowC, setNumItemsToShowC] = useState(itemsPerLine);
+  const [numItemsToShowK, setNumItemsToShowK] = useState(itemsPerLine);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
  
@@ -27,6 +28,7 @@ function Home() {
       setNumItemsToShowF(itemsPerLine);
       setNumItemsToShowB(itemsPerLine);
       setNumItemsToShowC(itemsPerLine);
+      setNumItemsToShowK(itemsPerLine);
     };
 
     // Attach the event listener to the window resize event
@@ -170,6 +172,23 @@ const CustomNextArrow = (props) => (
       like: false
     }));
 
+    // Filter items with the label "kitchenware"
+  const kitchenwareItems = items
+  .filter(item => item.label.includes('Kitchenware'))
+  .slice(0, numItemsToShowK)
+  .map(item => ({
+    imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com" + item.images[0] : ReactLogo,
+    itemName: item.name,
+    price: item.price,
+    userName: item.userID,
+    postDate: item.postDate,
+    sold: item.sold,
+    label: item.label,
+    locations: item.locations,
+    description: item.description,
+    like: false
+  }));
+
   const handleMoreClickF = () => {
     setNumItemsToShowF(prevNumItems => prevNumItems + calculateItemsPerLine());
   };
@@ -178,6 +197,10 @@ const CustomNextArrow = (props) => (
   };
   const handleMoreClickC = () => {
     setNumItemsToShowC(prevNumItems => prevNumItems + calculateItemsPerLine());
+  };
+
+  const handleMoreClickK = () => {
+    setNumItemsToShowK(prevNumItems => prevNumItems + calculateItemsPerLine());
   };
 
   const handleLessClickF = () => {
@@ -193,6 +216,11 @@ const CustomNextArrow = (props) => (
   const handleLessClickC = () => {
     // Decrease the number of items to show by 5, but not less than 5
     setNumItemsToShowC(calculateItemsPerLine());
+  };
+
+  const handleLessClickK = () => {
+    // Decrease the number of items to show by 5, but not less than 5
+    setNumItemsToShowK(calculateItemsPerLine());
   };
 
   const handleItemClick = (item) => {
@@ -222,46 +250,62 @@ const CustomNextArrow = (props) => (
         <Slider {...carouselSettings}>
           {/* Featured Item 1 */}
           <div class = "carousel-image-container">
+          <a href="https://www.amazon.com/gp/aw/d/B0BSP51S36/?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=4aa81c8273b4e027cafc79aa6df65e33&hsa_cr_id=0&qid=1702412173&sr=1-1-9e67e56a-6f64-441f-a281-df67fc737124&ref_=sbx_be_s_sparkle_sccd_asin_0_img&pd_rd_w=r2pwK&content-id=amzn1.sym.417820b0-80f2-4084-adb3-fb612550f30b%3Aamzn1.sym.417820b0-80f2-4084-adb3-fb612550f30b&pf_rd_p=417820b0-80f2-4084-adb3-fb612550f30b&pf_rd_r=C3G6JPDF703TKNTSC273&pd_rd_wg=MMglw&pd_rd_r=b2f4ef75-e99c-46b4-aa1d-be744ec23507&th=1" target="_blank">
             <img src="https://m.media-amazon.com/images/I/71DL+S6ihBL._AC_SY300_SX300_.jpg" alt="Featured Item 1" />
             <div class="carousel-image-overlay"></div>
+          </a>
           </div>
           {/* Featured Item 2 */}
           <div class = "carousel-image-container">
+          <a href="https://www.amazon.com/A315-24P-R7VH-Display-Quad-Core-Processor-Graphics/dp/B0BS4BP8FB/ref=lp_565108_1_3?pf_rd_p=53d84f87-8073-4df1-9740-1bf3fa798149&pf_rd_r=2DTSQ92Q6K887G28SSX3&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&ufe=app_do%3Aamzn1.fos.17d9e15d-4e43-4581-b373-0e5c1a776d5d" target="_blank"> 
             <img src="https://m.media-amazon.com/images/I/61gKkYQn6lL.__AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Featured Item 2" />
             <div class="carousel-image-overlay"></div>
+          </a>  
           </div>
           {/* Featured Item 3 */}
           <div class = "carousel-image-container">
+          <a href="https://www.amazon.com/ASUS-ROG-Strix-Gaming-Laptop/dp/B0BV8H8HVD/ref=lp_565108_1_4?pf_rd_p=53d84f87-8073-4df1-9740-1bf3fa798149&pf_rd_r=4XDETMQY5S06TYGG3CWJ&sbo=RZvfv%2F%2FHxDF%2BO5021pAnSA%3D%3D&ufe=app_do%3Aamzn1.fos.765d4786-5719-48b9-b588-eab9385652d5&th=1" target="_blank">   
             <img src="https://m.media-amazon.com/images/I/71v0BQo8T8L.__AC_SX300_SY300_QL70_FMwebp_.jpg" />
             <div class="carousel-image-overlay"></div>
+            </a>    
           </div>
           {/* Featured Item 4 */}
           <div class = "carousel-image-container">
+          <a href="https://www.amazon.com/MSI-Thin-144Hz-Gaming-Laptop/dp/B0BT3CD75G/ref=sr_1_8?qid=1702412462&s=pc&sr=1-8&ufe=app_do%3Aamzn1.fos.2b70bf2b-6730-4ccf-ab97-eb60747b8daf&th=1" target="_blank">
             <img src="https://m.media-amazon.com/images/I/71eXjkfeO8L.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Featured Item 4" />
             <div class="carousel-image-overlay"></div>
+            </a>
           </div>
           {/* Featured Item 5 */}
           <div class = "carousel-image-container">
+            <a href="https://www.amazon.com/ASUS-i7-12700H-ScreenPad-Celestial-UX582ZW-AB76T/dp/B09TPTNZLG/ref=sr_1_3?keywords=ASUS%2BZenbook%2Bpro&qid=1702412630&s=pc&sr=1-3&ufe=app_do%3Aamzn1.fos.17f26c18-b61b-4ce9-8a28-de351f41cffb&th=1" target="_blank">
             <img src="https://m.media-amazon.com/images/I/71kLT+J4CGL._AC_SY300_SX300_.jpg" alt="Featured Item 5" />
             <div class="carousel-image-overlay"></div>
+            </a>
           </div>
 
           {/* Featured Item 6 */}
           <div class = "carousel-image-container">
+            <a href="https://www.amazon.com/Alienware-m18-AMD-Gaming-Laptop/dp/B0CDCJRB35/ref=sr_1_1_sspa?keywords=alienware&qid=1702412703&s=pc&sr=1-1-spons&ufe=app_do%3Aamzn1.fos.05107ab3-5190-4335-82f9-b94a77e0e924&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&th=1" target="_blank">
             <img src="https://www.hidevolution.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/1/m16_amd_01_2.png" alt="Featured Item 6" />
             <div class="carousel-image-overlay"></div>
+            </a>
           </div>
 
           {/* Featured Item 7 */}
           <div class = "carousel-image-container">
+            <a href="https://www.amazon.com/ASUS-Gaming-Laptop-Nebula-Display/dp/B0BZQPQD63/ref=sr_1_9?keywords=ROG+Strix&qid=1702412765&s=pc&sr=1-9&ufe=app_do%3Aamzn1.fos.17f26c18-b61b-4ce9-8a28-de351f41cffb" target="_blank">
             <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6539/6539605_sd.jpg" alt="Featured Item 7" />
             <div class="carousel-image-overlay"></div>
+            </a>
           </div>
 
           {/* Featured Item 8 */}
           <div class = "carousel-image-container">
+            <a href="https://www.amazon.com/10-Core-i7-1250U-Business-Thunderbolt-Fingerprint/dp/B0CGFCVKVF/ref=sr_1_2_sspa?keywords=DELL+XPS+13&qid=1702412813&s=pc&sr=1-2-spons&ufe=app_do%3Aamzn1.fos.765d4786-5719-48b9-b588-eab9385652d5&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1" target="_blank">
             <img src="https://m.media-amazon.com/images/I/71rUcSAYTKL.__AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Featured Item 8" />
             <div class="carousel-image-overlay"></div>
+            </a> 
           </div>
 
           
@@ -358,6 +402,33 @@ const CustomNextArrow = (props) => (
         </button>)}
         {numItemsToShowB > calculateItemsPerLine() && (
           <button className="less" onClick={handleLessClickB}>
+            Show Less
+          </button>
+        )}
+      </div>
+
+      {/* Kitchenware Section */}
+      <div className="kitechware-section">
+        <h2>Kitchenware</h2>
+        <div className="items">
+          {kitchenwareItems.map(item => (
+            <Item
+              key={item._id}
+              imageSrc={item.imageSrc}
+              itemName={item.itemName}
+              price={item.price}
+              Sold={item.sold}
+              Lotation={item.locations}
+              like={false}
+              onDetailClick={() => handleItemClick(item)} 
+            />
+          ))}
+        </div>
+        {numItemsToShowK < totalLength('Kitchenware')&&(<button className="more" onClick={handleMoreClickK}>
+          Show More
+        </button>)}
+        {numItemsToShowK > calculateItemsPerLine() && (
+          <button className="less" onClick={handleLessClickK}>
             Show Less
           </button>
         )}
