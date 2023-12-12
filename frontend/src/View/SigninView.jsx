@@ -42,7 +42,7 @@ const SignIn = () => {
             auth.login(response.data)
             // alert(response.data.message); // Or handle the successful login as needed
             alert("successfully logged in !")
-            navigate('/home');
+            navigate('/');
         } catch (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code

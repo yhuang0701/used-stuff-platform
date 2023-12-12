@@ -38,7 +38,7 @@ const SideBar = () => {
         <NavLink to="/contact" className="flex items-center p-4 hover:bg-gray-100">
           <MdContacts className="mr-4" /> Change Contact Info
         </NavLink> */}
-        <NavLink to="/home" onClick={handleSignOut} className="flex items-center p-4 hover:bg-gray-100">
+        <NavLink to="/" onClick={handleSignOut} className="flex items-center p-4 hover:bg-gray-100">
           <MdPowerSettingsNew className="mr-4" /> Log Out
         </NavLink>
       </nav>
