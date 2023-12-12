@@ -28,7 +28,7 @@ const SignIn = () => {
         setError('');
         try {
             console.log("userDate: ", userData)
-            const response = await axios.post('http://127.0.0.1:8000/api/users/signin', userData);
+            const response = await axios.post('https://used-stuff-platform.onrender.com/api/users/signin', userData);
             // localStorage.setItem('token', response.data.token);
             // localStorage.setItem('userID', response.data.userID);
             console.log("sign in response", response)
@@ -42,7 +42,7 @@ const SignIn = () => {
             auth.login(response.data)
             // alert(response.data.message); // Or handle the successful login as needed
             alert("successfully logged in !")
-            navigate('/');
+            navigate('/home');
         } catch (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
