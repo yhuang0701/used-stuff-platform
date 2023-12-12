@@ -129,7 +129,7 @@ const UserDetail = () => {
             </div>
 
             <h1>{userData ? userData.userName : 'Default User'}</h1>
-            <div className="rating">Rating: {userData ? userData.rating: '4.8'}/5.0</div>
+            <div className="rating">Rating: 5.0/5.0</div>
 
 
             <button className="contact-button" >
