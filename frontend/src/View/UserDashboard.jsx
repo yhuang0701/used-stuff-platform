@@ -1,5 +1,34 @@
-import SideBar from "../components/SideBar"
+import { useState, useEffect } from "react";
+import SideBar from "../components/SideBar";
 const UserDashboard = () => {
+
+  const userId = localStorage.getItem('userID');
+  console.log("profile viewwww user ID: ", userId)
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [contactInfo, setContactInfo] = useState("");
+
+  // const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Fetch data from your API
+    fetch(`https://used-stuff-platform.onrender.com/api/users/${userId}`)
+      .then(response => response.json())
+      .then(data => {
+        // setUserData(data.data)
+        setUsername(data.data.userName)
+        setEmail(data.data.email)
+        setContactInfo(data.data.contact)
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, []);
+
+  // console.log(userData);
+  // console.log(username);
+  // console.log(email);
+  // console.log(contactInfo);
+
   return (
     <div className="flex">
       <SideBar />
@@ -17,7 +46,7 @@ const UserDashboard = () => {
                   Username
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  user_name_placeholder
+                  {username}
                 </dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -25,7 +54,7 @@ const UserDashboard = () => {
                   User ID
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  ASHDHAHS16
+                  {userId}
                 </dd>
               </div>
               <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -33,7 +62,7 @@ const UserDashboard = () => {
                   Email address
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  m.poul@example.com
+                  {email}
                 </dd>
               </div>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -41,7 +70,7 @@ const UserDashboard = () => {
                   Contact Info
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  ins: XXXXX
+                  {contactInfo}
                 </dd>
               </div>
             </dl>
