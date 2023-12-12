@@ -3,6 +3,7 @@ import ReactLogo from '../assets/react.svg';
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Modal from '../components/Modal';
+import ItemDetail from '../components/ItemDetail'; 
 
 const useQuery = () => {
   return new URLSearchParams(useLocation().search);
@@ -14,6 +15,8 @@ const Search = () => {
   console.log("SearchTerm: ", searchTerm);
 
   const [items, setItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     // Fetch data from your API
@@ -41,15 +44,31 @@ const Search = () => {
 
   console.log(searchItems);
 
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeItemDetail = () => {
+    setSelectedItem(null);
+    setIsModalOpen(false);
+  };
+
+
   return (
     <div className="mx-auto max-w-screen-xl">
       <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
         {searchItems.map(item => (
           <div key={item._id} className='flex justify-center my-4'>
-            <Item {...item} />
+            <Item {...item} onDetailClick={() => handleItemClick(item)}  />
           </div>
         ))}
       </div>
+      {isModalOpen && (
+        <Modal onClose={closeItemDetail}>
+          <ItemDetail selectedItem={selectedItem} onClose={closeItemDetail} />
+        </Modal>
+      )}
     </div>
   )
 }
