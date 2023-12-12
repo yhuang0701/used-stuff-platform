@@ -1,17 +1,17 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Item from '../components/Item';
 import './UserDetail.css';
 import userimg from '../assets/panda.jpeg';
 import ReactLogo from '../assets/react.svg';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import ItemDetail from '../components/ItemDetail'; 
+import ItemDetail from '../components/ItemDetail';
 import Modal from '../components/Modal';
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import {faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const UserDetail = () => {
 
@@ -38,9 +38,9 @@ const UserDetail = () => {
     useEffect(() => {
         //const userid = "656ffec0931a250a4c348812"
         console.log(userId)
-        const url = 'https://used-stuff-platform.onrender.com/api/users/'+userId
+        const url = 'https://used-stuff-platform.onrender.com/api/users/' + userId
         console.log(url)
-        axios.get(url )
+        axios.get(url)
             .then(response => {
                 if (response.data && response.data.data) {
                     console.log(response.data.data)
@@ -57,8 +57,8 @@ const UserDetail = () => {
     const handleItemClick = (item) => {
         setSelectedItem(item);
         setIsModalOpen(true);
-      };
-    
+    };
+
     const closeItemDetail = () => {
         setSelectedItem(null);
         setIsModalOpen(false);
@@ -70,7 +70,7 @@ const UserDetail = () => {
 
             //https://used-stuff-platform.onrender.com/api/items?where={"userID": "656ffec0931a250a4c348812"}
 
-            const url = "https://used-stuff-platform.onrender.com/api/items?where={\"userID\":\"" + userId +"\"}";
+            const url = "https://used-stuff-platform.onrender.com/api/items?where={\"userID\":\"" + userId + "\"}";
 
             console.log(url)
 
@@ -78,7 +78,7 @@ const UserDetail = () => {
             const response = await axios.get(url);
 
             const itemsList = response.data.data.map(item => ({
-                imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com"+item.images[0] : ReactLogo,
+                imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com" + item.images[0] : ReactLogo,
                 itemName: item.name,
                 price: item.price,
                 userName: item.userID,
@@ -97,9 +97,9 @@ const UserDetail = () => {
     };
 
     useEffect(() => {
-            fetchData(userId).then(fetchedItems => {
-                setItems(fetchedItems || []);
-            });
+        fetchData(userId).then(fetchedItems => {
+            setItems(fetchedItems || []);
+        });
     }, [userData]); // Dependency on userData
 
 
@@ -117,7 +117,7 @@ const UserDetail = () => {
                 {...item}
                 liked={likedItems[index]}
                 toggleLike={() => toggleLike(index)}
-                onDetailClick={() => handleItemClick(item)} 
+                onDetailClick={() => handleItemClick(item)}
             />
         ));
     };
@@ -129,7 +129,7 @@ const UserDetail = () => {
             </div>
 
             <h1>{userData ? userData.userName : 'Default User'}</h1>
-            <div className="rating">Rating: {userData ? userData.rating: '4.8'}/5.0</div>
+            <div className="rating">Rating: 5.0 / 5.0</div>
 
 
             <button className="contact-button" >
@@ -147,7 +147,7 @@ const UserDetail = () => {
             {/* Render the ItemDetail component if an item is selected */}
             {isModalOpen && (
                 <Modal onClose={closeItemDetail}>
-                <ItemDetail selectedItem={selectedItem} onClose={closeItemDetail} />
+                    <ItemDetail selectedItem={selectedItem} onClose={closeItemDetail} />
                 </Modal>
             )}
 
