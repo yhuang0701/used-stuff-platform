@@ -8,15 +8,17 @@ export const AuthProvider = ({ children }) => {
 
     const login = (userData) => {
         setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
+        localStorage.setItem('token', userData.token);
+        localStorage.setItem('userID', userData.userId);
         console.log("user logged in updated auth!!")
+        console.log(userData)
     };
 
     const logout = () => {
         setUser(null);
         localStorage.removeItem('user');
         localStorage.removeItem('userID');
-        localStorage.removeItem('token');
+        // localStorage.removeItem('token');
     };
 
     return (

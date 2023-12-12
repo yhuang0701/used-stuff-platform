@@ -29,8 +29,8 @@ const SignIn = () => {
         try {
             console.log("userDate: ",userData)
             const response = await axios.post('http://127.0.0.1:8000/api/users/signin', userData);
-            localStorage.setItem('token', response.data.token);
-            localStorage.setItem('userID', response.data.userID);
+            // localStorage.setItem('token', response.data.token);
+            // localStorage.setItem('userID', response.data.userID);
             console.log("sign in response",response)
 
             // login({
@@ -39,7 +39,7 @@ const SignIn = () => {
             //     token:response.data.token
             // });
 
-            auth.login(userData)
+            auth.login(response.data)
             // alert(response.data.message); // Or handle the successful login as needed
             alert("successfully logged in !")
             navigate('/home');

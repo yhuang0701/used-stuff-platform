@@ -11,12 +11,14 @@ const Header = () => {
     // State for the search input
     const [searchInput, setSearchInput] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
-    const {user} = useAuth()
+    // const {user} = useAuth()
     const auth = useAuth()
     const navigate = useNavigate()
+    const userId = localStorage.getItem('userID');
+    console.log("post item viewwww user ID: ",userId)
 
     const handlePostNavigation = () => {
-        if (user) {
+        if (userId) {
             navigate('/post');
         } else {
             alert('Please sign in to post items');
@@ -104,7 +106,7 @@ const Header = () => {
                     
 
                     <div className="user-profile-dropdown">
-                        {user ? (
+                        {userId ? (
                             <>
                                 <Link to="/profile" className="header-button">
                                     <FontAwesomeIcon icon={faUser} /> {/* User profile icon */}

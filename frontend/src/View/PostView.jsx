@@ -13,7 +13,8 @@ const CreatePostView = () => {
     const [selectedLocations, setSelectedLocations] = useState([]); // State for selected meet-up locations
     const [price, setPrice] = useState(0);
 
-    const userId = localStorage.getItem('userId');
+    const userId = localStorage.getItem('userID');
+    console.log("post item viewwww user ID: ",userId)
     
 
 
