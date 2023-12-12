@@ -2,36 +2,28 @@
 
 :root {
     --uiuc-orange: #E84A27;
-    /* UIUC Orange */
     --uiuc-blue: #13294b;
-    /* UIUC Navy Blue */
     --uiuc-light-grey: #f4f4f4;
     --uiuc-dark-grey: #ccc;
 }
 
 .sign-in-container {
-    width: 80%;
+    width: 100%;
     max-width: 400px;
-    /* Adjusted for sign-in form */
-    margin: 50px auto;
-    /* More margin for centered look */
-    padding: 20px;
+    margin: 2rem auto;
+    padding: 2rem;
     border: 1px solid var(--uiuc-dark-grey);
     border-radius: 8px;
     background: white;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    /* Add shadow for depth */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .sign-in-container h2 {
     font-family: 'Helvetica Neue', sans-serif;
-    font-size: 24px;
-    /* Slightly larger for sign-in title */
+    font-size: 2rem;
     color: var(--uiuc-blue);
-    margin-bottom: 30px;
-    /* More space below the title */
+    margin-bottom: 2rem;
     text-align: center;
-    /* Center the title */
     font-weight: bold;
 }
 
@@ -40,21 +32,29 @@
     flex-direction: column;
 }
 
-.sign-in-container label {
-    font-size: 1rem;
-    color: var(--uiuc-blue);
-    margin-bottom: 10px;
+.field-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
-.sign-in-container input {
+.field-container label {
+    font-size: 1rem;
+    color: var(--uiuc-blue);
+    margin-right: 0.5rem; /* Spacing between label and input field */
+    flex: 1; /* Allow the label to grow */
+}
+
+.field-container input[type="text"],
+.field-container input[type="password"] {
     border: 1px solid var(--uiuc-dark-grey);
     border-radius: 4px;
     font-size: 1rem;
     padding: 10px;
-    margin: 20px;
+    flex: 3; /* Allow the input to grow */
 }
 
-.sign-in-container input[type='submit'] {
+.sign-in-container input[type="submit"] {
     padding: 10px 20px;
     border: none;
     border-radius: 10px;
@@ -63,16 +63,29 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 1.5rem; /* Added vertical margin */
 }
 
-.sign-in-container input[type='submit']:hover {
+.sign-in-container input[type="submit"]:hover {
     background-color: #ff7740;
-    /* Lighter UIUC Orange for hover */
 }
 
 .error-message {
     color: red;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 1rem;
 }
 
+.sign-in-container a {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--uiuc-blue);
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: bold;
+}
+
+.sign-in-container a:hover {
+    color: var(--uiuc-orange);
+}

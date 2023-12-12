@@ -56,3 +56,28 @@
     display: flex;
     justify-content: center; /* Center button horizontally */
 }
+
+
+.sign-up-container input {
+    border: 1px solid var(--uiuc-dark-grey);
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/* Submit Button Styling */
+.sign-up-container input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--uiuc-orange);
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 1.5rem; /* Consistent vertical spacing */
+}
+
+.sign-up-container input[type="submit"]:hover {
+    background-color: #ff7740; /* Slightly lighter orange on hover */
+}
