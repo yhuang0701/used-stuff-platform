@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from './Modal'; 
 import './ItemDetail.css';
+import {Link} from "react-router-dom";
 
 const ItemDetail = ({ selectedItem, onClose }) => {
   // Implement the detailed view UI using the selected item data
@@ -20,7 +21,10 @@ const ItemDetail = ({ selectedItem, onClose }) => {
             <div className="item_details">
               <h2>Name: {selectedItem.itemName}</h2>
               <p>Price: {selectedItem.price}</p>
-              <p>Username: <a href="/UserDetail" style={{ textDecoration: 'underline' }}>{selectedItem.userName}</a></p>
+              {/* <p>Username: <a href="/UserDetail" style={{ textDecoration: 'underline' }} state={{ userId: "656ffec0931a250a4c348812" }}>{"click to jump"}</a></p> */}
+              <Link to={`/UserDetail`}  state={{ userId: selectedItem.userName}} style={{ textDecoration: 'underline' }}>
+              Poster Profile: click to jump
+              </Link>
               <p>Sold: {selectedItem.sold.toString()}</p>
               <p>Description: {selectedItem.description}</p>
               <p>Label: {selectedItem.label}</p>
