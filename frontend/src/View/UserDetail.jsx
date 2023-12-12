@@ -25,8 +25,6 @@ const UserDetail = () => {
     const [selectedItem, setSelectedItem] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-
     useEffect(() => {
         // Access the state property from the location object
         const state = location.state;
@@ -75,6 +73,7 @@ const UserDetail = () => {
             const url = "https://used-stuff-platform.onrender.com/api/items?where={\"userID\":\"" + userId +"\"}";
 
             console.log(url)
+
 
             const response = await axios.get(url);
 

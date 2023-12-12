@@ -1,7 +1,7 @@
 // File: /views/CreatePostView.js
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPlus, faTimes, faUpload} from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './PostView.css'
 
 const CreatePostView = () => {
@@ -12,6 +12,9 @@ const CreatePostView = () => {
     const [tagInput, setTagInput] = useState('');
     const [selectedLocations, setSelectedLocations] = useState([]); // State for selected meet-up locations
     const [price, setPrice] = useState(0);
+
+    const userId = localStorage.getItem('userID');
+    console.log("post item viewwww user ID: ", userId)
 
 
 
@@ -26,7 +29,7 @@ const CreatePostView = () => {
     const handleTagInputChange = (e) => {
         const value = e.target.value;
         if (e.target.checked) {
-            setTags([...tags,value]);
+            setTags([...tags, value]);
         } else {
             setTags(tags.filter((tag) => tag !== value));
         }
@@ -117,8 +120,14 @@ const CreatePostView = () => {
         // API endpoint
         // local Endpoint: POST 'http://localhost:8000/api/items'
 
-        const apiEndpoint = 'https://used-stuff-platform.onrender.com/api/items';
 
+        const apiEndpoint = 'https://used-stuff-platform.onrender.com/api/items';
+        // Append other form fields to the FormData object
+
+        // formData.append('userID', userId);
+        // formData.append('name', title);
+        // formData.append('description', content);
+        // formData.append('price', price);
 
         try {
             const response = await fetch(apiEndpoint, {
@@ -151,32 +160,32 @@ const CreatePostView = () => {
         <div className="create-post-container">
             <form onSubmit={handleSubmit}>
 
-            <h1>Upload image:</h1>
-            <div className="image-upload-section">
-                {renderImagePreviews()}
-                <label htmlFor="image-upload" className="image-upload-label">
+                <h1>Upload image:</h1>
+                <div className="image-upload-section">
+                    {renderImagePreviews()}
+                    <label htmlFor="image-upload" className="image-upload-label">
 
-                    <div className="icon-wrapper">
-                        <FontAwesomeIcon icon={faPlus} /> {/* Font Awesome Icon */}
-                    </div>
+                        <div className="icon-wrapper">
+                            <FontAwesomeIcon icon={faPlus} /> {/* Font Awesome Icon */}
+                        </div>
+                        <input
+                            id="image-upload"
+                            type="file"
+                            multiple
+                            onChange={handleImageChange}
+                            className="image-upload-input"
+                        />
+                    </label>
+                </div>
+                <h1>Item title:</h1>
+                <div className="title-section">
                     <input
-                        id="image-upload"
-                        type="file"
-                        multiple
-                        onChange={handleImageChange}
-                        className="image-upload-input"
+                        type="text"
+                        placeholder="Add a title here"
+                        value={title}
+                        onChange={handleTitleChange}
                     />
-                </label>
-            </div>
-            <h1>Item title:</h1>
-            <div className="title-section">
-                <input
-                    type="text"
-                    placeholder="Add a title here"
-                    value={title}
-                    onChange={handleTitleChange}
-                />
-            </div>
+                </div>
 
                 <h1>Set Item Price:</h1>
                 <div className="price-slider-section">
@@ -201,16 +210,16 @@ const CreatePostView = () => {
 
 
 
-            <h1> Item descriptions:</h1>
-            <div className="content-section">
-                <textarea
-                    placeholder="Add your content here..."
-                    value={content}
-                    onChange={handleContentChange}
-                />
-            </div>
+                <h1> Item descriptions:</h1>
+                <div className="content-section">
+                    <textarea
+                        placeholder="Add your content here..."
+                        value={content}
+                        onChange={handleContentChange}
+                    />
+                </div>
 
-            <h1>Item Identification:</h1>
+                <h1>Item Identification:</h1>
                 <div className="location-checkbox-section">
                     <div className="checkbox-group">
                         <input
@@ -304,9 +313,9 @@ const CreatePostView = () => {
                 </div>
 
 
-            <div className="submit-section">
-                <button type="submit" id="submit-button">Submit</button>
-            </div>
+                <div className="submit-section">
+                    <button type="submit" id="submit-button">Submit</button>
+                </div>
             </form>
         </div>
 

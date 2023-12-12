@@ -23,14 +23,22 @@ const SignUp = () => {
     e.preventDefault();
     try {
         console.log("sign up user data: ",formData)
-      const response = await axios.post('http://127.0.0.1:8000/users/signup', formData);
+      const response = await axios.post('http://127.0.0.1:8000/api/users/signup', formData);
       console.log(response.data);
       alert(response.data.message);
-        navigate('/post')
+        
       // Handle post-signup logic here (e.g., redirect to login)
+      navigate('/user/signin')
     } catch (error) {
         console.log(error)
-        alert(error.response.data)
+        // console.log(error.response.status)
+        if(error.response.status===500){
+          alert("User Name already exists, please try a new one!")
+        }
+        else{
+          alert(error.response.data)
+        }
+        
     }
   };
 

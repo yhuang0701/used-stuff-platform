@@ -3,12 +3,28 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUser, faBell, faSearch} from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../View/AuthContext';
 import './Header.css'; // Make sure to create a CSS file for styling
 
 const Header = () => {
     // State for the search input
     const [searchInput, setSearchInput] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
+    // const {user} = useAuth()
+    const auth = useAuth()
+    const navigate = useNavigate()
+    const userId = localStorage.getItem('userID');
+    console.log("post item viewwww user ID: ",userId)
+
+    const handlePostNavigation = () => {
+        if (userId) {
+            navigate('/post');
+        } else {
+            alert('Please sign in to post items');
+            navigate('/user/signin');
+        }
+    };
 
 
     // Function to handle search input changes
@@ -27,6 +43,12 @@ const Header = () => {
         event.preventDefault();
         console.log('Search for:', searchInput);
         // Redirect to the search results page or fetch search results
+    };
+
+    const handleSignOut= () => {
+        auth.logout();
+        navigate('/home')
+        
     };
 
     return (
@@ -72,23 +94,34 @@ const Header = () => {
 
             {/* Right side of the header */}
             <div className="right-header-section">
-                <Link to="/post" className="header-button">Post item</Link>
+                {/* <Link to="/post" className="header-button">Post item</Link> */}
+                <div onClick={handlePostNavigation} className="header-button">Post item</div>
 
                 <div className="user-info">
                     <Link to="/notifications" className="header-button">
                         <FontAwesomeIcon icon={faBell} />
                         <span className="notifications-icon">1</span>
                     </Link>
+
+                    
+
                     <div className="user-profile-dropdown">
-                        <Link to="/profile" className="header-button">
-                            <FontAwesomeIcon icon={faUser} /> {/* User profile icon */}
-                        </Link>
-                        <div className="dropdown-content">
-                            <Link to="/user/signin">Sign In</Link>
-                            <Link to="/signout">Sign Out</Link>
-                            
-                        </div>
+                        {userId ? (
+                            <>
+                                <Link to="/profile" className="header-button">
+                                    <FontAwesomeIcon icon={faUser} /> {/* User profile icon */}
+                                </Link>
+                                <div className="dropdown-content">
+                                    <div onClick={handleSignOut}>Sign Out</div>
+                                </div>
+                            </>
+                        ) : (
+                            <Link to="/user/signin" className="header-button">
+                                Sign In
+                            </Link>
+                        )}
                     </div>
+                    
                 </div>
             </div>
         </header>
