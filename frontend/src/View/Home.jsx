@@ -130,6 +130,9 @@ const CustomNextArrow = (props) => (
       userName: item.userID,
       postDate: item.postDate,
       sold: item.sold,
+      label: item.label,
+      locations: item.locations,
+      description: item.description,
       like: false
     }));
 
@@ -144,6 +147,9 @@ const CustomNextArrow = (props) => (
       userName: item.userID,
       postDate: item.postDate,
       sold: item.sold,
+      label: item.label,
+      locations: item.locations,
+      description: item.description,
       like: false
     }));
 
@@ -158,6 +164,9 @@ const CustomNextArrow = (props) => (
       userName: item.userID,
       postDate: item.postDate,
       sold: item.sold,
+      label: item.label,
+      locations: item.locations,
+      description: item.description,
       like: false
     }));
 
@@ -260,7 +269,16 @@ const CustomNextArrow = (props) => (
         </Slider>
       </div>
 
-
+      {/*imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com" + item.images[0] : ReactLogo,
+      itemName: item.name,
+      price: item.price,
+      userName: item.userID,
+      postDate: item.postDate,
+      sold: item.sold,
+      label: item.label,
+      locations: item.locations,
+      description: item.description,
+      like: false */}
 
       {/* Furniture Section */}
       <div className="furniture-section">
@@ -274,7 +292,9 @@ const CustomNextArrow = (props) => (
               price={item.price}
               Sold={item.sold}
               like={false}
-              onClick={() => handleItemClick(item)}
+              label={item.label}
+              description={item.description}
+              onDetailClick={() => handleItemClick(item)} 
             />
           ))}
         </div>
@@ -301,6 +321,8 @@ const CustomNextArrow = (props) => (
               price={item.price}
               Sold={item.sold}
               like={false}
+              postDate={item.postDate}
+              onDetailClick={() => handleItemClick(item)} 
             />
           ))}
         </div>
@@ -327,6 +349,7 @@ const CustomNextArrow = (props) => (
               Sold={item.sold}
               Lotation={item.locations}
               like={false}
+              onDetailClick={() => handleItemClick(item)} 
             />
           ))}
         </div>

@@ -1,7 +1,6 @@
-// ItemDetail.js
 import React from 'react';
 import Modal from './Modal'; 
-import './ItemDetail.css'; // Create a CSS file for styling if needed
+import './ItemDetail.css';
 
 const ItemDetail = ({ selectedItem, onClose }) => {
   // Implement the detailed view UI using the selected item data
@@ -10,14 +9,24 @@ const ItemDetail = ({ selectedItem, onClose }) => {
       <div className="item-detail-container">
         {/* Detailed view content */}
         <div className="close-button" onClick={onClose}>
-          Close
+          X
         </div>
         {/* Add detailed information about the selected item here */}
         {selectedItem && (
-          <div>
-            <h2>{selectedItem.itemName}</h2>
-            <p>Price: {selectedItem.price}</p>
-            {/* Add more details as needed */}
+           <div className="item-content">
+            <div className="item_image">
+            <img src={selectedItem.imageSrc} alt={selectedItem.itemName}/>
+            </div>
+            <div className="item_details">
+              <h2>Name: {selectedItem.itemName}</h2>
+              <p>Price: {selectedItem.price}</p>
+              <p>Username: <a href="/UserDetail" style={{ textDecoration: 'underline' }}>{selectedItem.userName}</a></p>
+              <p>Sold: {selectedItem.sold.toString()}</p>
+              <p>Description: {selectedItem.description}</p>
+              <p>Label: {selectedItem.label}</p>
+              <p>Trading location: {selectedItem.locations}</p>
+              <p>PostDate: {selectedItem.postDate.toString()}</p>
+            </div>
           </div>
         )}
       </div>
