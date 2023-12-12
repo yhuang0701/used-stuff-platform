@@ -23,7 +23,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       console.log("sign up user data: ", formData)
-      const response = await axios.post('http://127.0.0.1:8000/api/users/signup', formData);
+      const response = await axios.post('https://used-stuff-platform.onrender.com/api/users/signup', formData);
       console.log(response.data);
       alert(response.data.message);
 
