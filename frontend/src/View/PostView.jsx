@@ -81,25 +81,47 @@ const CreatePostView = () => {
         // Create a FormData object
         const formData = new FormData();
 
+        // Append images if available
+        if (images && images.length > 0) {
+            images.forEach(image => {
+                console.log(image);
+                formData.append('images', image);
+            });
+        }
 
-        images.forEach(image => {
-            console.log(image)
-            formData.append('images', image);
-        });
+        // Append tags if available
+        if (tags && tags.length > 0) {
+            tags.forEach(tag => {
+                console.log(tag);
+                formData.append('label', tag);
+            });
+        }
 
-        tags.forEach(tag => {
-            console.log(tag)
-            formData.append('label', tag);
-        });
+        // Append selectedLocations if available
+        if (selectedLocations && selectedLocations.length > 0) {
+            selectedLocations.forEach(location => {
+                console.log(location)
+                formData.append(`locations`, location);
+            });
+        }
 
-        selectedLocations.forEach(location  => {
-            formData.append(`locations`, location);
-        });
+        // Append other mandatory form fields to the FormData object
+        formData.append('userID', "656ffec0931a250a4c348812");
+        formData.append('name', title);
+        formData.append('price', price);
 
 
+        // Append description if available
+        if (content) {
+            console.log(content)
+            formData.append('description', content);
+        }
 
-        console.log(selectedLocations)
+        // API endpoint
+        // local Endpoint: POST 'http://localhost:8000/api/items'
 
+
+        const apiEndpoint = 'https://used-stuff-platform.onrender.com/api/items';
         // Append other form fields to the FormData object
 
         formData.append('userID', userId);
@@ -107,14 +129,11 @@ const CreatePostView = () => {
         formData.append('description', content);
         formData.append('price', price);
 
-        //https://used-stuff-platform.onrender.com/
-
         try {
-            const response = await fetch('https://used-stuff-platform.onrender.com/api/items', {
+            const response = await fetch(apiEndpoint, {
                 method: 'POST',
                 body: formData // Send the FormData object
-                // Note: When sending FormData, the 'Content-Type' header should not be set manually
-                // It will be set automatically by the browser, including the boundary parameter
+                // Note: Do not set 'Content-Type' header manually
             });
 
             if (!response.ok) {
@@ -124,15 +143,16 @@ const CreatePostView = () => {
             const result = await response.json();
             console.log('Success:', result);
             // Handle success here
+            alert('Post complete!');
+            window.location.href = '/';
         } catch (error) {
+            alert("Post fail ! Please fill in the name and identification ")
             console.error('Submission error:', error);
             // Handle errors here
         }
-
-        alert('Post complete!');
-        window.location.href = '/';
-
     };
+
+
 
 
 

@@ -2,17 +2,62 @@ import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faPlus, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
 import Item from '../components/Item';
 import "slick-carousel/slick/slick.css"; 
+import ItemDetail from '../components/ItemDetail'; 
+import Modal from '../components/Modal';
+
+const ReactLogo = 'https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg';
 
 
 function Home() {
   const [items, setItems] = useState([]);
-  const [numItemsToShowF, setNumItemsToShowF] = useState(5);
-  const [numItemsToShowB, setNumItemsToShowB] = useState(5);
-  const [numItemsToShowC, setNumItemsToShowC] = useState(5);
+  const [itemsPerLine, setItemsPerLine] = useState(calculateItemsPerLine());
+  const [numItemsToShowF, setNumItemsToShowF] = useState(itemsPerLine);
+  const [numItemsToShowB, setNumItemsToShowB] = useState(itemsPerLine);
+  const [numItemsToShowC, setNumItemsToShowC] = useState(itemsPerLine);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+ 
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerLine(calculateItemsPerLine());
+      // Adjust the number of items to show based on the new itemsPerLine value
+      setNumItemsToShowF(itemsPerLine);
+      setNumItemsToShowB(itemsPerLine);
+      setNumItemsToShowC(itemsPerLine);
+    };
+
+    // Attach the event listener to the window resize event
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [itemsPerLine]);
+
+  function calculateItemsPerLine() {
+    // Adjust this logic based on responsive design requirements
+    const windowWidth = window.innerWidth;
+    if(windowWidth>=1600){
+      return 6; // LLL screens
+    } else if(windowWidth>=1330){
+      return 5; // LL screens
+    } else if (windowWidth >= 1060) {
+      return 4; // Large screens
+    } else if (windowWidth >= 790) {
+      return 3; // Medium screens
+    } else {
+      return 2; // Small screens
+    }
+  }
+
+  function totalLength(string) {
+    return items.filter(item => item.label.includes(string)).length
+  }
+
 
   // Custom arrow component for previous button
 const CustomPrevArrow = (props) => (
@@ -72,6 +117,9 @@ const CustomNextArrow = (props) => (
   }, []); // Empty dependency array means this effect runs once when the component mounts
 
 
+
+
+
   const FurnitureItems = items
     .filter(item => item.label.includes('Furniture'))
     .slice(0, numItemsToShowF)
@@ -82,6 +130,9 @@ const CustomNextArrow = (props) => (
       userName: item.userID,
       postDate: item.postDate,
       sold: item.sold,
+      label: item.label,
+      locations: item.locations,
+      description: item.description,
       like: false
     }));
 
@@ -96,6 +147,9 @@ const CustomNextArrow = (props) => (
       userName: item.userID,
       postDate: item.postDate,
       sold: item.sold,
+      label: item.label,
+      locations: item.locations,
+      description: item.description,
       like: false
     }));
 
@@ -110,32 +164,45 @@ const CustomNextArrow = (props) => (
       userName: item.userID,
       postDate: item.postDate,
       sold: item.sold,
+      label: item.label,
+      locations: item.locations,
+      description: item.description,
       like: false
     }));
 
   const handleMoreClickF = () => {
-    setNumItemsToShowF(prevNumItems => prevNumItems + 5);
+    setNumItemsToShowF(prevNumItems => prevNumItems + calculateItemsPerLine());
   };
   const handleMoreClickB = () => {
-    setNumItemsToShowB(prevNumItems => prevNumItems + 5);
+    setNumItemsToShowB(prevNumItems => prevNumItems + calculateItemsPerLine());
   };
   const handleMoreClickC = () => {
-    setNumItemsToShowC(prevNumItems => prevNumItems + 5);
+    setNumItemsToShowC(prevNumItems => prevNumItems + calculateItemsPerLine());
   };
 
   const handleLessClickF = () => {
     // Decrease the number of items to show by 5, but not less than 5
-    setNumItemsToShowF(prevNumItems => Math.max(5, prevNumItems - 5));
+    setNumItemsToShowF(calculateItemsPerLine());
   };
 
   const handleLessClickB = () => {
     // Decrease the number of items to show by 5, but not less than 5
-    setNumItemsToShowB(prevNumItems => Math.max(5, prevNumItems - 5));
+    setNumItemsToShowB(calculateItemsPerLine());
   };
 
   const handleLessClickC = () => {
     // Decrease the number of items to show by 5, but not less than 5
-    setNumItemsToShowC(prevNumItems => Math.max(5, prevNumItems - 5));
+    setNumItemsToShowC(calculateItemsPerLine());
+  };
+
+  const handleItemClick = (item) => {
+    setSelectedItem(item);
+    setIsModalOpen(true);
+  };
+
+  const closeItemDetail = () => {
+    setSelectedItem(null);
+    setIsModalOpen(false);
   };
 
 
@@ -151,7 +218,7 @@ const CustomNextArrow = (props) => (
       {/* Carousel Section */}
       
       <div className="carousel-section">
-        <h2>Featured Items</h2>
+        <h2>Featured Items!!!</h2>
         <Slider {...carouselSettings}>
           {/* Featured Item 1 */}
           <div class = "carousel-image-container">
@@ -178,10 +245,40 @@ const CustomNextArrow = (props) => (
             <img src="https://m.media-amazon.com/images/I/71kLT+J4CGL._AC_SY300_SX300_.jpg" alt="Featured Item 5" />
             <div class="carousel-image-overlay"></div>
           </div>
+
+          {/* Featured Item 6 */}
+          <div class = "carousel-image-container">
+            <img src="https://www.hidevolution.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/m/1/m16_amd_01_2.png" alt="Featured Item 6" />
+            <div class="carousel-image-overlay"></div>
+          </div>
+
+          {/* Featured Item 7 */}
+          <div class = "carousel-image-container">
+            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6539/6539605_sd.jpg" alt="Featured Item 7" />
+            <div class="carousel-image-overlay"></div>
+          </div>
+
+          {/* Featured Item 8 */}
+          <div class = "carousel-image-container">
+            <img src="https://m.media-amazon.com/images/I/71rUcSAYTKL.__AC_SY300_SX300_QL70_FMwebp_.jpg" alt="Featured Item 8" />
+            <div class="carousel-image-overlay"></div>
+          </div>
+
+          
+
         </Slider>
       </div>
 
-
+      {/*imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com" + item.images[0] : ReactLogo,
+      itemName: item.name,
+      price: item.price,
+      userName: item.userID,
+      postDate: item.postDate,
+      sold: item.sold,
+      label: item.label,
+      locations: item.locations,
+      description: item.description,
+      like: false */}
 
       {/* Furniture Section */}
       <div className="furniture-section">
@@ -195,13 +292,16 @@ const CustomNextArrow = (props) => (
               price={item.price}
               Sold={item.sold}
               like={false}
+              label={item.label}
+              description={item.description}
+              onDetailClick={() => handleItemClick(item)} 
             />
           ))}
         </div>
-        <button className="more" onClick={handleMoreClickF}>
+        {numItemsToShowF < totalLength('Furniture') && (<button className="more" onClick={handleMoreClickF}>
           Show More
-        </button>
-        {numItemsToShowF > 5 && (
+        </button>)}
+        {numItemsToShowF > calculateItemsPerLine() && (
           <button className="less" onClick={handleLessClickF}>
             Show Less
           </button>
@@ -221,13 +321,15 @@ const CustomNextArrow = (props) => (
               price={item.price}
               Sold={item.sold}
               like={false}
+              postDate={item.postDate}
+              onDetailClick={() => handleItemClick(item)} 
             />
           ))}
         </div>
-        <button className="more" onClick={handleMoreClickC}>
+        {numItemsToShowC < totalLength('Cloth') && (<button className="more" onClick={handleMoreClickC}>
           Show More
-        </button>
-        {numItemsToShowC > 5 && (
+        </button>)}
+        {numItemsToShowC > calculateItemsPerLine() && (
           <button className="less" onClick={handleLessClickC}>
             Show Less
           </button>
@@ -247,18 +349,27 @@ const CustomNextArrow = (props) => (
               Sold={item.sold}
               Lotation={item.locations}
               like={false}
+              onDetailClick={() => handleItemClick(item)} 
             />
           ))}
         </div>
-        <button className="more" onClick={handleMoreClickB}>
+        {numItemsToShowB < totalLength('Book')&&(<button className="more" onClick={handleMoreClickB}>
           Show More
-        </button>
-        {numItemsToShowB > 5 && (
+        </button>)}
+        {numItemsToShowB > calculateItemsPerLine() && (
           <button className="less" onClick={handleLessClickB}>
             Show Less
           </button>
         )}
       </div>
+
+      {/* Render the ItemDetail component if an item is selected */}
+      {isModalOpen && (
+        <Modal onClose={closeItemDetail}>
+          <ItemDetail selectedItem={selectedItem} onClose={closeItemDetail} />
+        </Modal>
+      )}
+
     </div>
 
   );

@@ -7,6 +7,7 @@
 .furniture-section,
 .cloth-section {
   margin-bottom: 40px;
+  border-radius: 8px;
 }
 
 .section {
@@ -30,8 +31,8 @@
   color: orangered;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 0px;
-  margin-top: 20px;
+  margin-bottom: 15px;
+
 }
 
 .books-section h2{
@@ -51,8 +52,8 @@
   ;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 0;
-  margin-top: 20px;
+  margin-bottom: 15px;
+
 }
 
 .furniture-section h2{
@@ -71,8 +72,8 @@
   color: orangered;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 0;
-  margin-top: 20px;
+  margin-bottom: 15px;
+
 }
 
 .cloth-section h2{
@@ -85,21 +86,26 @@ h2 {
   color: #13294B;
 }
 
+
 .items {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  justify-content: center;
 }
 
 .item {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   width: 250px;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
 
 .item img {
   max-width: 100%;
@@ -162,13 +168,16 @@ h2 {
   ); 
   /* border-radius: 10px; */
   position: relative;
+  margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .carousel-section h2 {
   font-size: 24px;
   margin-bottom: 20px;
-  color: #f05a28; /* Change color to orange */
+  color: darkred; /* Change color to orange */
   text-align: center;
+  font-weight: bold;
 }
 
 /* Styles for the react-slick carousel */

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'; // regular heart
 import { faHeart as fasHeart } from '@fortawesome/free-solid-svg-icons'; // solid heart
 
-const Item = ({ imageSrc, itemName, price, userName, Postdate, Sold, like}) => {
+const Item = ({ imageSrc, itemName, price, userName, postDate, Sold, like, label, onDetailClick,description}) => {
 
     const [liked, setLiked] = useState(like); // initializes liked state to false
 
@@ -13,7 +13,7 @@ const Item = ({ imageSrc, itemName, price, userName, Postdate, Sold, like}) => {
     };
 
     return (
-        <div className="item">
+        <div className="item" onClick={onDetailClick}>
             <div className="item-image" onClick={toggleLike}> {/* Added onClick event */}
                 <img src={imageSrc} alt={itemName} />
                 <FontAwesomeIcon
@@ -26,11 +26,11 @@ const Item = ({ imageSrc, itemName, price, userName, Postdate, Sold, like}) => {
                 <div className="price">Price: {price}</div>
                 <div className="item-name">Item: {itemName}</div>
             </div>
-            <div className="user-info-and-status">
+            {/* <div className="user-info-and-status">
                 <div className="status-display">
-                    {Sold ? 'In Stock' : 'Out of Stock'}
+                    {Sold ?  'Out of Stock' : 'In Stock'}
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };
