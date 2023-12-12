@@ -80,20 +80,18 @@ const Header = () => {
                             />
                             <FontAwesomeIcon icon={faSearch} className="search-icon" onClick={handleSearchSubmit} />
                         </div>
-                        <div className="header-button" onClick={handleFilterClick}> Filter
-                        </div>
+                        {/* <div className="header-button" onClick={handleFilterClick}> Filter
+                        </div> */}
                     </form>
 
 
 
-                    {isFilterVisible && (
+                    {/* {isFilterVisible && (
                         <div className="filter-options">
-                            {/* Render your filter options here */}
                             <div>Option 1</div>
                             <div>Option 2</div>
-                            {/* ... more options */}
                         </div>
-                    )}
+                    )} */}
 
 
 
@@ -108,10 +106,10 @@ const Header = () => {
                 <div onClick={handlePostNavigation} className="header-button">Post item</div>
 
                 <div className="user-info">
-                    <Link to="/notifications" className="header-button">
+                    {/* <Link to="/notifications" className="header-button">
                         <FontAwesomeIcon icon={faBell} />
                         <span className="notifications-icon">1</span>
-                    </Link>
+                    </Link> */}
 
 
 

@@ -131,7 +131,7 @@ body {
     display: none; /* Hide the dropdown content by default */
     position: absolute; /* Position the dropdown content absolutely within user-profile-dropdown */
     background-color: #E84A27; /* Background color for the dropdown - UIUC often uses white backgrounds */
-    min-width: 120px; /* Minimum width of the dropdown */
+    min-width: 100px; /* Minimum width of the dropdown */
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for the dropdown */
     z-index: 1; /* Ensure the dropdown is above other content */
     border: 1px solid #c0c0c0; /* Optional: border to define the dropdown */
@@ -139,11 +139,12 @@ body {
 
 .user-profile-dropdown:hover .dropdown-content {
     display: block; /* Show the dropdown content on hover */
+    padding: 1rem;
 }
 
 .user-profile-dropdown .dropdown-content a {
     color: white; /* UIUC Blue for text */
-    padding: 15px 20px; /* Increased padding for larger dropdown links */
+    padding: 15px 20px;
     text-decoration: none;
     display: block;
     text-align: left;
@@ -153,4 +154,5 @@ body {
 .user-profile-dropdown .dropdown-content a:hover {
     background-color: #E84A27; /* UIUC Orange for background on hover */
     color: #fff; /* White text on hover */
+    cursor: pointer;
 }
