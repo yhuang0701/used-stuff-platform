@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { AuthProvider } from './View/AuthContext';
 
 import React from 'react';
 import Header from './components/Header';
@@ -13,7 +14,7 @@ import SignUp from './View/SignupView';
 
 const App = () => {
     return (
-        <>
+        <AuthProvider>
             <Header />
             <main>
                 <Routes>
@@ -28,7 +29,7 @@ const App = () => {
                     {/* Add additional routes for other pages */}
                 </Routes>
             </main>
-        </>
+        </AuthProvider>
     );
 };
 

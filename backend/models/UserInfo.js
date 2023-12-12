@@ -25,16 +25,12 @@ const UserInfoSchema = new Schema({
         type: String,
         required: false
     },
-    favorite:[{
-        type: Schema.Types.ObjectId,
-        ref: 'Item',
-        default:[]
-    }],
     items: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Item',
-        default:[]
-    }]
+        type: String // Assuming images are stored as URLs or paths
+    }],
+    favorite: [{
+        type: String // Assuming images are stored as URLs or paths
+    }],
 });
 
 const UserInfo = mongoose.model('UserInfo', UserInfoSchema);

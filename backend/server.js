@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 var router = express.Router();
 const cors = require('cors');
+require('dotenv').config();
+
 
 // Connect to database
 connectDB();
@@ -44,7 +46,7 @@ app.get('/', (req, res) => {
 
 // Use routes as a module (see index.js)
 require('./routes')(app, router);
-app.use('/users', require('./routes/userRoutes'));
+// app.use('/users', require('./routes/userRoutes'));
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 console.log('Server running on port ' + PORT);
