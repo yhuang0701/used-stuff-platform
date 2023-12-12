@@ -17,6 +17,7 @@ function Home() {
   const [numItemsToShowF, setNumItemsToShowF] = useState(itemsPerLine);
   const [numItemsToShowB, setNumItemsToShowB] = useState(itemsPerLine);
   const [numItemsToShowC, setNumItemsToShowC] = useState(itemsPerLine);
+  const [numItemsToShowK, setNumItemsToShowK] = useState(itemsPerLine);
   const [selectedItem, setSelectedItem] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
  
@@ -27,6 +28,7 @@ function Home() {
       setNumItemsToShowF(itemsPerLine);
       setNumItemsToShowB(itemsPerLine);
       setNumItemsToShowC(itemsPerLine);
+      setNumItemsToShowK(itemsPerLine);
     };
 
     // Attach the event listener to the window resize event
@@ -170,6 +172,23 @@ const CustomNextArrow = (props) => (
       like: false
     }));
 
+    // Filter items with the label "kitchenware"
+  const kitchenwareItems = items
+  .filter(item => item.label.includes('Kitchenware'))
+  .slice(0, numItemsToShowK)
+  .map(item => ({
+    imageSrc: item.images && item.images.length > 0 ? "https://used-stuff-platform.onrender.com" + item.images[0] : ReactLogo,
+    itemName: item.name,
+    price: item.price,
+    userName: item.userID,
+    postDate: item.postDate,
+    sold: item.sold,
+    label: item.label,
+    locations: item.locations,
+    description: item.description,
+    like: false
+  }));
+
   const handleMoreClickF = () => {
     setNumItemsToShowF(prevNumItems => prevNumItems + calculateItemsPerLine());
   };
@@ -178,6 +197,10 @@ const CustomNextArrow = (props) => (
   };
   const handleMoreClickC = () => {
     setNumItemsToShowC(prevNumItems => prevNumItems + calculateItemsPerLine());
+  };
+
+  const handleMoreClickK = () => {
+    setNumItemsToShowK(prevNumItems => prevNumItems + calculateItemsPerLine());
   };
 
   const handleLessClickF = () => {
@@ -193,6 +216,11 @@ const CustomNextArrow = (props) => (
   const handleLessClickC = () => {
     // Decrease the number of items to show by 5, but not less than 5
     setNumItemsToShowC(calculateItemsPerLine());
+  };
+
+  const handleLessClickK = () => {
+    // Decrease the number of items to show by 5, but not less than 5
+    setNumItemsToShowK(calculateItemsPerLine());
   };
 
   const handleItemClick = (item) => {
@@ -374,6 +402,33 @@ const CustomNextArrow = (props) => (
         </button>)}
         {numItemsToShowB > calculateItemsPerLine() && (
           <button className="less" onClick={handleLessClickB}>
+            Show Less
+          </button>
+        )}
+      </div>
+
+      {/* Kitchenware Section */}
+      <div className="kitechware-section">
+        <h2>Kitchenware</h2>
+        <div className="items">
+          {kitchenwareItems.map(item => (
+            <Item
+              key={item._id}
+              imageSrc={item.imageSrc}
+              itemName={item.itemName}
+              price={item.price}
+              Sold={item.sold}
+              Lotation={item.locations}
+              like={false}
+              onDetailClick={() => handleItemClick(item)} 
+            />
+          ))}
+        </div>
+        {numItemsToShowK < totalLength('Kitchenware')&&(<button className="more" onClick={handleMoreClickK}>
+          Show More
+        </button>)}
+        {numItemsToShowK > calculateItemsPerLine() && (
+          <button className="less" onClick={handleLessClickK}>
             Show Less
           </button>
         )}
