@@ -7,6 +7,8 @@
 
 const UserInfo = require('../models/UserInfo')
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 
 const registerUser = async (req, res) => {
   console.log("Request Body:", req.body);
@@ -76,10 +78,24 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Invalid password' });
     }
 
-    // User authenticated successfully
-    res.json({ message: 'User logged in successfully' });
+    // User authenticated successfully, generate JWT
+    const payload = {
+      user: {
+        id: user._id, // user's unique ID from the database
+        userName: user.userName // additional user information
+      }
+    };
+
+    jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' }, (err, token) => {
+      if (err) {
+        console.error('Error signing token: ', err);
+        return res.status(500).send('Error during token generation.');
+      }
+      // Send token and user ID to the client
+      res.json({ token, userId: user._id });
+    });
   } catch (error) {
-    console.log('Error logining in the user: ', error);
+    console.error('Error logging in the user: ', error);
     res.status(500).send('Server error during login.');
   }
 };

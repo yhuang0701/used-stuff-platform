@@ -4,8 +4,10 @@ import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTimes, faUpload } from '@fortawesome/free-solid-svg-icons';
 import './SigninView.css'
+import { useAuth } from './AuthContext';
 
 const SignIn = () => {
+    const auth= useAuth()
     const navigate = useNavigate()
     const [userData, setUserData] = useState({
         userName: '',
@@ -26,9 +28,21 @@ const SignIn = () => {
         setError('');
         try {
             console.log("userDate: ",userData)
-            const response = await axios.post('http://127.0.0.1:8000/users/signin', userData);
-            alert(response.data.message); // Or handle the successful login as needed
-            navigate('/post');
+            const response = await axios.post('http://127.0.0.1:8000/api/users/signin', userData);
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('userID', response.data.userID);
+            console.log("sign in response",response)
+
+            // login({
+            //     userName:userData.userName,
+            //     userID : userData._id,
+            //     token:response.data.token
+            // });
+
+            auth.login(userData)
+            // alert(response.data.message); // Or handle the successful login as needed
+            alert("successfully logged in !")
+            navigate('/home');
         } catch (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code

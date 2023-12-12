@@ -13,6 +13,8 @@ const CreatePostView = () => {
     const [selectedLocations, setSelectedLocations] = useState([]); // State for selected meet-up locations
     const [price, setPrice] = useState(0);
 
+    const userId = localStorage.getItem('userId');
+    
 
 
     const handleImageChange = (event) => {
@@ -98,7 +100,8 @@ const CreatePostView = () => {
         console.log(selectedLocations)
 
         // Append other form fields to the FormData object
-        formData.append('userID', "656ffec0931a250a4c348812");
+
+        formData.append('userID', userId);
         formData.append('name', title);
         formData.append('description', content);
         formData.append('price', price);
