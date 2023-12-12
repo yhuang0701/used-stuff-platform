@@ -44,6 +44,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    color: black;
 }
 
 .search-icon {
@@ -52,6 +53,12 @@ body {
     color: #ccc;
     font-size: 24px; /* Increased size for the search icon */
 }
+
+.search-icon:hover {
+    color: #13294b;
+    cursor: pointer;
+}
+
 .search-input {
     padding: 8px 12px;
     padding-right: 30px;
