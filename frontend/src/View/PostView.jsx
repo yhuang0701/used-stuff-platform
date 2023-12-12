@@ -106,7 +106,7 @@ const CreatePostView = () => {
         }
 
         // Append other mandatory form fields to the FormData object
-        formData.append('userID', "656ffec0931a250a4c348812");
+        formData.append('userID', userId);
         formData.append('name', title);
         formData.append('price', price);
 
