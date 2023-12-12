@@ -18,15 +18,13 @@ const App = () => {
             <Header />
             <main>
                 <Routes>
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/post" element={<Post />} />
                     <Route path="/UserDetail" element={<UserDetail />} />
                     <Route path="/profile" element={<UserDashboard />} />
                     <Route path="/search" element={<Search />} />                    
                     <Route path='/user/signin' element={<SignIn />} />
                     <Route path='/user/signup' element={<SignUp/>} />
-                    {/* <Route path='/home'></> */}
-                    {/* Add additional routes for other pages */}
                 </Routes>
             </main>
         </AuthProvider>
