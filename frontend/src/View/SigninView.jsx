@@ -7,7 +7,7 @@ import './SigninView.css'
 import { useAuth } from './AuthContext';
 
 const SignIn = () => {
-    const auth= useAuth()
+    const auth = useAuth()
     const navigate = useNavigate()
     const [userData, setUserData] = useState({
         userName: '',
@@ -27,11 +27,11 @@ const SignIn = () => {
         e.preventDefault();
         setError('');
         try {
-            console.log("userDate: ",userData)
+            console.log("userDate: ", userData)
             const response = await axios.post('http://127.0.0.1:8000/api/users/signin', userData);
             // localStorage.setItem('token', response.data.token);
             // localStorage.setItem('userID', response.data.userID);
-            console.log("sign in response",response)
+            console.log("sign in response", response)
 
             // login({
             //     userName:userData.userName,
@@ -47,10 +47,10 @@ const SignIn = () => {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
-                console.log(error); 
+                console.log(error);
                 setError(error.response.data.message);
             } else {
-                console.log("error: ",error)
+                console.log("error: ", error)
                 setError('Failed to log in. Please try again later.');
             }
         }
@@ -61,7 +61,7 @@ const SignIn = () => {
             <div className="sign-in-container">
                 <h2>Sign In</h2>
                 <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className="field-container">
                         <label>Username</label>
                         <input
                             type="text"
@@ -71,7 +71,7 @@ const SignIn = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className="field-container">
                         <label>Password</label>
                         <input
                             type="password"
