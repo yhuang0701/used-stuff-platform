@@ -21,7 +21,8 @@ const itemInfoSchema = new Schema({
         required: true
     }],
     locations: [{
-        type: String
+        type: String,
+        default:[]
     }],
     description: {
         type: String
