@@ -13,6 +13,9 @@ const CreatePostView = () => {
     const [selectedLocations, setSelectedLocations] = useState([]); // State for selected meet-up locations
     const [price, setPrice] = useState(0);
 
+    const userId = localStorage.getItem('userID');
+    console.log("post item viewwww user ID: ",userId)
+    
 
 
     const handleImageChange = (event) => {
@@ -117,8 +120,14 @@ const CreatePostView = () => {
         // API endpoint
         // local Endpoint: POST 'http://localhost:8000/api/items'
 
-        const apiEndpoint = 'https://used-stuff-platform.onrender.com/api/items';
 
+        const apiEndpoint = 'https://used-stuff-platform.onrender.com/api/items';
+        // Append other form fields to the FormData object
+
+        formData.append('userID', userId);
+        formData.append('name', title);
+        formData.append('description', content);
+        formData.append('price', price);
 
         try {
             const response = await fetch(apiEndpoint, {
