@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faUser, faBell, faSearch} from '@fortawesome/free-solid-svg-icons';
+import { faUser, faBell, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../View/AuthContext';
 import './Header.css'; // Make sure to create a CSS file for styling
@@ -15,7 +15,7 @@ const Header = () => {
     const auth = useAuth()
     const navigate = useNavigate()
     const userId = localStorage.getItem('userID');
-    console.log("post item viewwww user ID: ",userId)
+    console.log("post item viewwww user ID: ", userId)
 
     const handlePostNavigation = () => {
         if (userId) {
@@ -40,15 +40,25 @@ const Header = () => {
     // Function to handle the search submission
     // Replace with your actual search handling logic
     const handleSearchSubmit = (event) => {
-        event.preventDefault();
+        if (event) {
+            event.preventDefault();
+        }
+
+        if (searchInput.trim() === '') {
+            // Optionally, display a message to the user
+            alert('Please enter a search term.');
+            return;
+        }
+
         console.log('Search for:', searchInput);
         // Redirect to the search results page or fetch search results
+        navigate(`search?name=${searchInput}`)
     };
 
-    const handleSignOut= () => {
+    const handleSignOut = () => {
         auth.logout();
         navigate('/home')
-        
+
     };
 
     return (
@@ -68,7 +78,7 @@ const Header = () => {
                                 className="search-input"
                                 placeholder="Search item..."
                             />
-                            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+                            <FontAwesomeIcon icon={faSearch} className="search-icon" onClick={handleSearchSubmit} />
                         </div>
                         <div className="header-button" onClick={handleFilterClick}> Filter
                         </div>
@@ -103,7 +113,7 @@ const Header = () => {
                         <span className="notifications-icon">1</span>
                     </Link>
 
-                    
+
 
                     <div className="user-profile-dropdown">
                         {userId ? (
@@ -121,7 +131,7 @@ const Header = () => {
                             </Link>
                         )}
                     </div>
-                    
+
                 </div>
             </div>
         </header>
